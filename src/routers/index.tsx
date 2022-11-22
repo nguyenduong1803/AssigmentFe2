@@ -1,29 +1,20 @@
 import { FC, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import publicRouter from "./public";
+import { Routes, Route, useRoutes } from "react-router-dom";
+import RouterDashboard from "./dashboard";
+import dashboard from "./dashboard";
 // import privateRouter from "./private";
 
 export type typeRouter = {
   path: string;
   element: Function;
-  layout:Function;
+  layout: Function;
 };
 
 const Routers = () => {
   return (
-  <Suspense fallback={<div>Loading...</div>}>
-    <Router>
-      <Routes>
-          {publicRouter.map((item, index) => {
-            const Element = item.element;
-            const Layout=item.layout
-            return (
-              <Route element={<Layout><Element/></Layout>} path={item.path} key={index}></Route>
-            );
-          })}
-      </Routes>
-    </Router>
-  </Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
+      <RouterDashboard />
+    </Suspense>
   );
 };
 export default Routers;

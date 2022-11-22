@@ -1,11 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import { isBooleanObject } from "util/types";
-import { getProduct } from "../../services/productService/ProductService";
+import { getProduct } from "../../../services/productService/ProductService";
 
-type Props = {
-  theme: string;
-  name: string;
-};
+type Props = {};
 type typeData = {
   category: string;
   name: string;
@@ -15,7 +12,7 @@ type typeData = {
   price: string;
   quantity: number;
 };
-const Home: FC<Props> = ({ theme, name }) => {
+const Home: FC<Props> = () => {
   const [data, setData] = useState<typeData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [fetchErorr, setFetchErorr] = useState<boolean>(false);
@@ -35,8 +32,6 @@ const Home: FC<Props> = ({ theme, name }) => {
   }, []);
   return (
     <div>
-      <p>Home theme: {theme}</p>
-      <p>{name}</p>
       {loading && <p>Loading...</p>}
       <ul>
         {data.length > 0 &&

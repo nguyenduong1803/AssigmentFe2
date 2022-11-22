@@ -1,11 +1,11 @@
 import { FC, ReactNode } from "react";
-import Footer from "./Element/Footer";
-import Header from "./Element/Header";
+import Footer from "../Element/Footer";
+import Header from "../Element/Header";
 interface Props {
   children: ReactNode;
 }
 
-const Layout: FC<Props> = (props: Props) => {
+const DefaultLayout: FC<Props> = (props: Props) => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const Layout: FC<Props> = (props: Props) => {
     </>
   );
 };
-export default Layout;
+export default DefaultLayout;
