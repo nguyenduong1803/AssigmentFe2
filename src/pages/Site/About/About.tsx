@@ -1,7 +1,4 @@
-import React from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { styled } from '@mui/material/styles';
+
 type Props = {};
 
 const About = (props: Props) => {
@@ -13,7 +10,5 @@ const About = (props: Props) => {
   </p>
   );
 };
-const Buttons = styled(Button)`
-  color:red;
-`
+
 export default About;

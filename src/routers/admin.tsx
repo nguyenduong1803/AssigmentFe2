@@ -1,11 +1,11 @@
 import { lazy } from "react";
-import Layout from "../components/Template/Layout/DefaultLayout";
+// import Layout from "../components/Template/Layout/DefaultLayout";
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 import ManageProduct from "../pages/Admin/ManageProduct/ManageProduct";
 import ManageUser from "../pages/Admin/ManageUser/ManageUser";
 import Blogs from "../pages/Admin/Blogs/Blogs";
 import Page404 from "../pages/Page404";
-import Admin2 from "../components/Template/Admin/TemplateAdmin";
+import TemplateAdmin from "../components/Template/Admin/TemplateAdmin";
 
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
@@ -14,41 +14,41 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <Admin2>
+      <TemplateAdmin>
         <Home />
-      </Admin2>
+      </TemplateAdmin>
     ),
   },
   {
     path: "/about",
     element: (
-      <Admin2>
+      <TemplateAdmin>
         <About />
-      </Admin2>
+      </TemplateAdmin>
     ),
   },
   {
     path: "/product",
     element: (
-      <Admin2>
+      <TemplateAdmin>
         <ManageProduct />
-      </Admin2>
+      </TemplateAdmin>
     ),
   },
   {
     path: "/blog",
     element: (
-      <Admin2>
+      <TemplateAdmin>
         <Blogs />
-      </Admin2>
+      </TemplateAdmin>
     ),
   },
   {
     path: "/user",
     element: (
-      <Admin2>
+      <TemplateAdmin>
         <ManageUser />
-      </Admin2>
+      </TemplateAdmin>
     ),
   },
   { path: "404", element: <Page404 /> },
