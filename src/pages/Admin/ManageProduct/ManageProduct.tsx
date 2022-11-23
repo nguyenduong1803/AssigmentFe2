@@ -1,6 +1,8 @@
 import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
+import Buttons from "../../../components/Atom/Button/Button";
 import TableProduct from "../../../components/Organism/TableProduct/TableProduct";
+import { Stack } from "@mui/material";
 type Props = {};
 const data = [
   {
@@ -47,7 +49,10 @@ const data = [
 const ManageProduct = (props: Props) => {
   return (
     <>
-      <BasicBreadcrumbs />
+      <Stack direction="row" justifyContent="space-between" marginBottom={2}>
+        <BasicBreadcrumbs />
+        <Buttons to="/manage/product/add">Add Product</Buttons>
+      </Stack>
       <TableProduct data={data} tableName="product" />
     </>
   );
