@@ -1,7 +1,7 @@
 import { FC, Suspense } from "react";
 import { Routes, Route, useRoutes } from "react-router-dom";
-import RouterDashboard from "./dashboard";
-import dashboard from "./dashboard";
+import RouterAdmin from "./admin";
+import dashboard from "./admin";
 // import privateRouter from "./private";
 
 export type typeRouter = {
@@ -13,7 +13,7 @@ export type typeRouter = {
 const Routers = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <RouterDashboard />
+      <RouterAdmin />
     </Suspense>
   );
 };

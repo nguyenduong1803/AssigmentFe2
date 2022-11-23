@@ -1,11 +1,11 @@
 import { lazy } from "react";
 import Layout from "../components/Template/Layout/DefaultLayout";
-import DashboardLayout from "../components/Template/Admin";
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 import ManageProduct from "../pages/Admin/ManageProduct/ManageProduct";
 import ManageUser from "../pages/Admin/ManageUser/ManageUser";
 import Blogs from "../pages/Admin/Blogs/Blogs";
 import Page404 from "../pages/Page404";
+import Admin2 from "../components/Template/Admin/TemplateAdmin";
 
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
@@ -14,48 +14,48 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <DashboardLayout>
+      <Admin2>
         <Home />
-      </DashboardLayout>
+      </Admin2>
     ),
   },
   {
     path: "/about",
     element: (
-      <DashboardLayout>
+      <Admin2>
         <About />
-      </DashboardLayout>
+      </Admin2>
     ),
   },
   {
     path: "/product",
     element: (
-      <DashboardLayout>
+      <Admin2>
         <ManageProduct />
-      </DashboardLayout>
+      </Admin2>
     ),
   },
   {
     path: "/blog",
     element: (
-      <DashboardLayout>
+      <Admin2>
         <Blogs />
-      </DashboardLayout>
+      </Admin2>
     ),
   },
   {
     path: "/user",
     element: (
-      <DashboardLayout>
+      <Admin2>
         <ManageUser />
-      </DashboardLayout>
+      </Admin2>
     ),
   },
   { path: "404", element: <Page404 /> },
   { path: "*", element: <Navigate to="/404" /> },
 ];
-const RouterDashboard = () => {
+const RouterAdmin = () => {
   const routesDashboard = useRoutes(routes);
   return routesDashboard;
 };
-export default RouterDashboard;
+export default RouterAdmin;
