@@ -1,5 +1,5 @@
 // component
-import SvgColor from '../../../../components/svg-color';
+import SvgColor from '../../../Atom/svg-color';
 
 // ----------------------------------------------------------------------
 

@@ -18,8 +18,8 @@ import account from "../../../../_mock/account";
 import useResponsive from "../../../../hooks/useResponsive";
 // components
 import navConfig from "./config";
-import Scrollbar from "../../../../components/scrollbar";
-import NavSection from "../../../nav-section/NavSection";
+import Scrollbar from "../../../Molecule/scrollbar";
+import NavSection from "../../../Organism/NavSection/NavSection";
 
 // ----------------------------------------------------------------------
 
