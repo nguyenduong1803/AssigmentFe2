@@ -1,55 +1,46 @@
 import { lazy } from "react";
 // import Layout from "../components/Template/Layout/DefaultLayout";
 import { Navigate, RouteObject, useRoutes } from "react-router-dom";
-import ManageProduct from "../pages/Admin/ManageProduct/ManageProduct";
 import ManageUser from "../pages/Admin/ManageUser/ManageUser";
-import Blogs from "../pages/Admin/Blogs/Blogs";
+import Blogs from "../pages/Admin/ManageBlogs/Blogs";
 import Page404 from "../pages/Page404";
 import TemplateAdmin from "../components/Template/Admin/TemplateAdmin";
-
+import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
+import { productRoute } from "./productRoute";
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
 
 const routes: RouteObject[] = [
-  {
-    path: "/",
-    element: (
-      <TemplateAdmin>
-        <Home />
-      </TemplateAdmin>
-    ),
+  // router client
+  { 
+    path: "/", element: (<><Home /></> ),
   },
+  // router admin manager
   {
-    path: "/about",
-    element: (
-      <TemplateAdmin>
-        <About />
-      </TemplateAdmin>
-    ),
-  },
-  {
-    path: "/product",
-    element: (
-      <TemplateAdmin>
-        <ManageProduct />
-      </TemplateAdmin>
-    ),
-  },
-  {
-    path: "/blog",
-    element: (
-      <TemplateAdmin>
-        <Blogs />
-      </TemplateAdmin>
-    ),
-  },
-  {
-    path: "/user",
-    element: (
-      <TemplateAdmin>
-        <ManageUser />
-      </TemplateAdmin>
-    ),
+    path: "manage",
+    children:[
+      {
+        index:true,
+        element: ( <TemplateAdmin> <Home /></TemplateAdmin> )
+      },
+      {
+        path: "about",
+        element: (<TemplateAdmin><About /></TemplateAdmin>),
+      },
+      productRoute
+    ,
+      {
+        path: "blog",
+        element: ( <TemplateAdmin><Blogs /></TemplateAdmin>),
+      },
+      {
+        path: "user",
+        element: (<TemplateAdmin><ManageUser /> </TemplateAdmin> ),
+      },
+      {
+        path: "category", element: (<TemplateAdmin><ManageCategory /></TemplateAdmin> ),
+      },
+    ]
   },
   { path: "404", element: <Page404 /> },
   { path: "*", element: <Navigate to="/404" /> },

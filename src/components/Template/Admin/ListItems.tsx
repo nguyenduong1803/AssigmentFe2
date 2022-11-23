@@ -11,10 +11,10 @@ const LinkStyle = styled(Link)({
   textDecoration: "none",
   color: "inherit",
 });
-export const ListNavbar = navConfig.map((item) => {
+export const ListNavbar = navConfig.map((item,index) => {
   const Icon = item.icon;
   return (
-    <LinkStyle key={item.path} to={item.path}>
+    <LinkStyle key={index} to={item.path}>
       <ListItemButton>
         <ListItemIcon>
           <Icon />

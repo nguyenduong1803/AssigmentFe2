@@ -2,7 +2,7 @@ import avatar from "../../../assets/illustrations/avatar_default.jpg";
 // mui icons
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ManageAccountsIcon from '@mui/icons-material//ManageAccounts';
 import CategoryIcon from '@mui/icons-material/Category';
 import StoreIcon from '@mui/icons-material/Store';
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
@@ -11,32 +11,32 @@ import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
  const navConfig = [
   {
     title: "Dashboard",
-    path: "/",
+    path: "/manage/",
     icon: DashboardIcon,
   },
   {
     title: "User",
-    path: "/user",
+    path: "/manage/user",
     icon: ManageAccountsIcon,
   },
   {
     title: "Product",
-    path: "/product",
+    path: "/manage/product",
     icon: StoreIcon,
   },
   {
     title: "Category",
-    path: "/category",
+    path: "/manage/category",
     icon: CategoryIcon,
   },
   {
     title: "Blog",
-    path: "/blog",
+    path: "/manage/blog",
     icon: CollectionsBookmarkIcon,
   },
   {
     title: "Reports",
-    path: "/login",
+    path: "/manage/blog",
     icon: BarChartIcon,
   },
 ];

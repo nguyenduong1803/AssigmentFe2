@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/lodash": "^4.14.189",
     "@types/styled-components": "^5.1.26",
     "dotenv-webpack": "^8.0.1"
