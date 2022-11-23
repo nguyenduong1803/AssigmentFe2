@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
-import { isBooleanObject } from "util/types";
+import { FC, useEffect, useState } from "react";
 import { getProduct } from "../../../services/productService/ProductService";
 
 type Props = {};
@@ -17,7 +16,6 @@ const Home: FC<Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [fetchErorr, setFetchErorr] = useState<boolean>(false);
   useEffect(() => {
-    let isCancel = false;
     const fetchProduct = async () => {
       setLoading(true);
       const res = await getProduct();
@@ -41,7 +39,7 @@ const Home: FC<Props> = () => {
               <li key={item.id}>
                 <h2>{item.name}</h2>
                 <h2>{item.price}</h2>
-                <img src={item.image} />
+                <img src={item.image} alt={item.name}/>
               </li>
             );
           })}

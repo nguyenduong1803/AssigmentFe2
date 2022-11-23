@@ -1,19 +1,11 @@
-import { FC, Suspense } from "react";
-import { Routes, Route, useRoutes } from "react-router-dom";
-import RouterDashboard from "./dashboard";
-import dashboard from "./dashboard";
+import { Suspense } from "react";
+import RouterAdmin from "./admin";
 // import privateRouter from "./private";
-
-export type typeRouter = {
-  path: string;
-  element: Function;
-  layout: Function;
-};
 
 const Routers = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <RouterDashboard />
+      <RouterAdmin />
     </Suspense>
   );
 };

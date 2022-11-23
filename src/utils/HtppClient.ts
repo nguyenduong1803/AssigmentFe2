@@ -1,12 +1,11 @@
 import axios from "axios";
 import type {
   AxiosInstance,
-  AxiosResponse,
-  AxiosError,
+  // AxiosResponse,
+  // AxiosError,
   AxiosRequestConfig,
 } from "axios";
 const baseURL = process.env.REACT_APP_BASE_URL;
-console.log(baseURL);
 const headers: AxiosRequestConfig["headers"] = {
   "Content-Type": "application/json",
 };
