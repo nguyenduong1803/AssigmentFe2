@@ -1,17 +1,19 @@
-import { ReactNode } from "react";
+import { ReactNode} from "react";
+import { Link } from "react-router-dom";
+// mui
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-import { Link } from "react-router-dom";
-type TypeProps = {
-  to?: string;
-  href?: string;
-  children?: ReactNode;
+import type { ButtonProps } from '@mui/material/Button';
+interface TypeProps extends ButtonProps {
+  to: string;
+  href: string;
+  children: ReactNode;
 };
 
-const Buttons = (props: TypeProps) => {
+const Buttons = (props: Partial<TypeProps>) => {
   let TypeButton: any = "div";
   const { to, href, children, ...passProps } = props;
-  const getProps: TypeProps = { ...passProps };
+  const getProps: Partial<TypeProps> = { ...passProps };
   if (to) {
     getProps.to = to;
     TypeButton = Link;
@@ -27,8 +29,8 @@ const Buttons = (props: TypeProps) => {
   });
 
   return (
-    <ButtonStyle {...getProps}>
-      <Button sx={{ backgroundColor: "#fff" }}  variant="outlined"color="success"  size="medium">
+    <ButtonStyle >
+      <Button {...getProps} sx={{ backgroundColor: "#fff" }}  variant="outlined"color="success"  size="medium">
         {props.children}
       </Button>
     </ButtonStyle>

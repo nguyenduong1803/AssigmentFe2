@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@hookform/resolvers": "^2.9.10",
     "@mui/icons-material": "^5.10.15",
     "@mui/material": "^5.10.14",
     "@mui/styled-engine-sc": "^5.10.14",
@@ -26,7 +27,8 @@
     "simplebar-react": "^2.4.3",
     "styled-components": "^5.3.6",
     "typescript": "^4.9.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
