@@ -1,10 +1,11 @@
-import React from "react";
+import { Box } from "@mui/system";
+import React, { ChangeEventHandler } from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
 import TableUser from "../../../components/Organism/TableUser/TableUser";
 type Props = {};
 const data = [
   {
-    _id:1,
+    _id: 1,
     name: "user",
     price: 100000,
     quantity: 200,
@@ -14,7 +15,7 @@ const data = [
     create_at: "10-12-2022",
   },
   {
-    _id:2,
+    _id: 2,
     name: "user",
     price: 100000,
     quantity: 200,
@@ -24,7 +25,7 @@ const data = [
     create_at: "10-12-2022",
   },
   {
-    _id:3,
+    _id: 3,
     name: "user",
     price: 100000,
     quantity: 200,
@@ -34,7 +35,7 @@ const data = [
     create_at: "10-12-2022",
   },
   {
-    _id:4,
+    _id: 4,
     name: "user",
     price: 100000,
     quantity: 200,
@@ -48,7 +49,7 @@ const ManageUser = (props: Props) => {
   return (
     <>
       <BasicBreadcrumbs />
-      <TableUser data={data}  tableName="user"/>
+      <TableUser data={data} tableName="user" />
     </>
   );
 };
