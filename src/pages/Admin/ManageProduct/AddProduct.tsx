@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
 import Paper from "../../../components/Atom/Paper/Paper";
-import FormProduct from "../../../components/Molecule/BaseFormProduct/FormProduct";
+import FormProduct from "../../../components/Organism/FormProduct/FormProduct";
 type Props = {};
 
 const AddProduct = (props: Props) => {
