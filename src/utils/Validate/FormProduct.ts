@@ -1,5 +1,10 @@
 import * as yup from "yup";
 import Regexs from "../Regexs";
+yup.setLocale({
+  mixed: {
+    notType: "${path} is required",
+  },
+});
 const validationProduct = yup.object().shape({
   name: yup
     .string()
@@ -20,7 +25,11 @@ const validationProduct = yup.object().shape({
     .strict(true)
     .required("Please enter category")
     .default(""),
-  price: yup.number().required("Please enter price").nullable().default(undefined),
+  price: yup
+    .number()
+    .required("Please enter price")
+    .nullable()
+    .default(undefined),
   quantity: yup
     .number()
     .required("Please enter quantity")
@@ -31,6 +40,10 @@ const validationProduct = yup.object().shape({
     .required("Please enter discount")
     .nullable()
     .default(undefined),
-    file:yup.mixed().required("please enter file")
+  file: yup
+    .mixed()
+    .test("required", "Please choose  file", (value) => {
+      return value[0] ;
+    }),
 });
 export { validationProduct };

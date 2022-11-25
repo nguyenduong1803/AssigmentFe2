@@ -14,7 +14,6 @@ const BaseFormProduct = (props: any) => {
         register,
         formState: { errors },
       } = form
-      console.log(errors)
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
     <Grid container spacing={3}>

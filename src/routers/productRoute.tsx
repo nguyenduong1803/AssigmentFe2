@@ -11,7 +11,7 @@ export const productRoute = {
       element: (<TemplateAdmin><ManageProduct /> </TemplateAdmin>),
     },
     {
-      path: "edit:id",
+      path: "edit/:id",
       element: (<TemplateAdmin><EditProduct /> </TemplateAdmin>),
     },
     {
