@@ -18,7 +18,7 @@ const BaseFormOrder = (props: any) => {
     <Form onSubmit={handleSubmit(onSubmit)}>
     <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <ControlTextField id="outlined-basic"  label="Product Name" name="name" control={control} />
+          <ControlTextField id="outlined-basic"  label="Order ID" name="name" control={control} />
         </Grid>
         <Grid item xs={12} md={6}>
           <ControlTextField id="outlined-basic"  label="Quantity" name="quantity" control={control} />
@@ -33,7 +33,7 @@ const BaseFormOrder = (props: any) => {
          <ControlSelect2  options={fakeOptions}  label="Status" name="status" control={control}/>
         </Grid>
         <Grid item xs={12} md={6}>
-         <ControlSelect2  options={fakeCategoey}label="Category" name="category" control={control}/>
+         <ControlSelect2  options={fakeCategoey}label="Date" name="categories" control={control}/>
         </Grid>
         <Grid item xs={12} md={12}>
           <ControlTextField  id="outlined-multiline-flexible"

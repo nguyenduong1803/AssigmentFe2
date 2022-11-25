@@ -9,6 +9,7 @@ import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
 import { productRoute } from "./productRoute";
 import { userRoute } from "./userRoute";
 import { categoryRoute } from "./categoryRoute";
+import { orderRoute } from "./orderRoute";
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
 
@@ -36,6 +37,7 @@ const routes: RouteObject[] = [
       productRoute,
       userRoute,
       categoryRoute,
+      orderRoute
     ]
   },
   { path: "404", element: <Page404 /> },

@@ -1,8 +1,8 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
-import BasicTable from "../../Molecule/BasicTable/BasicTable";
 import MoreVery from "../../Atom/MoreVery/MoreVery";
+import BasicTable from "../../Molecule/BaseForm/BasicTable/BasicTable";
 
 export default function TableUser(props: any) {
   const { data, tableName } = props;

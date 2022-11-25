@@ -19,7 +19,7 @@ const validationProduct = yup.object().shape({
     .strict(true)
     .required("Please enter status product")
     .default(""),
-  category: yup
+  categories: yup
     .string()
     .trim("Please remove the spaces")
     .strict(true)
@@ -40,10 +40,8 @@ const validationProduct = yup.object().shape({
     .required("Please enter discount")
     .nullable()
     .default(undefined),
-  file: yup
-    .mixed()
-    .test("required", "Please choose  file", (value) => {
-      return value[0] ;
-    }),
+  file: yup.mixed().test("required", "Please choose  file", (value) => {
+    return value[0];
+  }),
 });
 export { validationProduct };

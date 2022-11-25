@@ -34,13 +34,13 @@ const BaseFormProduct = (props: any) => {
          <ControlSelect2  options={fakeOptions}  label="Status" name="status" control={control}/>
         </Grid>
         <Grid item xs={12} md={6}>
-         <ControlSelect2  options={fakeCategoey}label="Category" name="category" control={control}/>
+         <ControlSelect2  options={fakeCategoey}label="Category" name="categories" control={control}/>
         </Grid>
         <Grid item xs={12} md={12}>
           <ControlTextField  id="outlined-multiline-flexible"
           rows={4}
           multiline
-          label="Description" name="description" control={control} />
+          label="Description" name="describe" control={control} />
         </Grid>
         <Grid item xs={12} md={6}>
           <Stack direction="row" spacing={2} alignItems="center">
