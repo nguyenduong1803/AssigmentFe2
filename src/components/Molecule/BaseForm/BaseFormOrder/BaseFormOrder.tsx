@@ -1,12 +1,12 @@
 import { FormHelperText, Grid, IconButton, Stack, Typography } from "@mui/material";
 import {styled} from "@mui/material/styles"
 import {PhotoCamera} from "@mui/icons-material"
+import Buttons from "../../../Atom/Button/Button";
+import ControlTextField from "../../../Atom/Form/ControlTextField";
+import ControlSelect2 from "../../../Atom/Form/ControlSelect2";
 // 
-import ControlTextField from "../../Atom/Form/ControlTextField";
-import Buttons from "../../Atom/Button/Button";
-import ControlSelect2 from "../../Atom/Form/ControlSelect2";
 
-const BaseFormProduct = (props: any) => {
+const BaseFormOrder = (props: any) => {
     const {fakeOptions,fakeCategoey,form,onSubmit}=props;
     const {
         control,
@@ -60,4 +60,4 @@ const Form = styled("form")({
     maxWidth:"1000px",
     margin:"0 auto"
     })
-export default BaseFormProduct
+export default BaseFormOrder

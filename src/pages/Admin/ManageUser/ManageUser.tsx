@@ -1,6 +1,7 @@
-import { Box } from "@mui/system";
+import { Stack } from "@mui/material";
 import React, { ChangeEventHandler } from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
+import ButtonLink from "../../../components/Atom/Button/ButtonLink";
 import TableUser from "../../../components/Organism/TableUser/TableUser";
 type Props = {};
 const data = [
@@ -48,7 +49,10 @@ const data = [
 const ManageUser = (props: Props) => {
   return (
     <>
-      <BasicBreadcrumbs />
+      <Stack direction="row" justifyContent="space-between" marginBottom={2}>
+        <BasicBreadcrumbs />
+        <ButtonLink to="/manage/user/add">Add User</ButtonLink>
+      </Stack>
       <TableUser data={data} tableName="user" />
     </>
   );

@@ -8,15 +8,15 @@ export const productRoute = {
   children: [
     {
       index: true,
-      element: (<TemplateAdmin><ManageProduct /> </TemplateAdmin>),
+      element: (<TemplateAdmin><ManageProduct/> </TemplateAdmin>),
     },
     {
       path: "edit/:id",
-      element: (<TemplateAdmin><EditProduct /> </TemplateAdmin>),
+      element: (<TemplateAdmin><EditProduct/> </TemplateAdmin>),
     },
     {
       path: "add",
-      element: (<TemplateAdmin><AddProduct /> </TemplateAdmin>),
+      element: (<TemplateAdmin><AddProduct/> </TemplateAdmin>),
     },
   ],
 };

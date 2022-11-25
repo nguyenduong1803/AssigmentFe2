@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import { validationProduct } from "../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import BaseFormProduct from "../../Molecule/BaseForm/BaseFormProduct/BaseFormProduct";
+
+import { validationProduct } from "../../../utils/Validate/FormProduct";
+import BaseFormCategory from "../../Molecule/BaseForm/BaseFormCategory/BaseFormCategory";
 type Props = {};
 type FormData = {
   name: string;
@@ -16,7 +17,7 @@ type FormData = {
 const fakeOptions = ["Còn hàng", "Hết hàng"];
 const fakeCategoey = ["Điện thoại", "laptop"];
 
-const FormAddProduct = (props: Props) => {
+const FormAddCategory = (props: Props) => {
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationProduct),
@@ -35,6 +36,6 @@ useEffect(()=>{
   console.log("err",form.formState.errors)
 
 })  
-  return <BaseFormProduct {...options}  />;
+  return <BaseFormCategory {...options}  />;
 };
-export default FormAddProduct;
+export default FormAddCategory;

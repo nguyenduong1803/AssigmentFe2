@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { validationProduct } from "../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
-import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
 import { useEffect } from "react";
+import BaseFormProduct from "../../Molecule/BaseForm/BaseFormProduct/BaseFormProduct";
 type Props = {};
 type FormData = {
   name: string;
