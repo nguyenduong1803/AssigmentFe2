@@ -2,19 +2,19 @@ import { Typography } from "@mui/material";
 import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
 import Paper from "../../../components/Atom/Paper/Paper";
-import FormEditProduct from "../../../components/Organism/FormProduct/FormEditProduct";
+import FormEditUser from "../../../components/Organism/FormUser/FormEditUser";
 type Props = {};
 
-const EditProduct = (props: Props) => {
+const EditUser = (props: Props) => {
   return (
     <>
       <BasicBreadcrumbs />
       <Paper elevation={1}>
-        <Typography variant="h5" textAlign="center" sx={{py:3}}> Edit Product</Typography>
-        <FormEditProduct/>
+        <Typography variant="h5" textAlign="center" sx={{py:3}}> Edit user</Typography>
+        <FormEditUser/>
       </Paper>
       
     </>
   );
 };
-export default EditProduct;
+export default EditUser;

@@ -7,6 +7,9 @@ import Page404 from "../pages/Page404";
 import TemplateAdmin from "../components/Template/Admin/TemplateAdmin";
 import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
 import { productRoute } from "./productRoute";
+import { userRoute } from "./userRoute";
+import { categoryRoute } from "./categoryRoute";
+import { orderRoute } from "./orderRoute";
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
 
@@ -26,20 +29,15 @@ const routes: RouteObject[] = [
       {
         path: "about",
         element: (<TemplateAdmin><About /></TemplateAdmin>),
-      },
-      productRoute
-    ,
+      }, 
       {
         path: "blog",
         element: ( <TemplateAdmin><Blogs /></TemplateAdmin>),
       },
-      {
-        path: "user",
-        element: (<TemplateAdmin><ManageUser /> </TemplateAdmin> ),
-      },
-      {
-        path: "category", element: (<TemplateAdmin><ManageCategory /></TemplateAdmin> ),
-      },
+      productRoute,
+      userRoute,
+      categoryRoute,
+      orderRoute
     ]
   },
   { path: "404", element: <Page404 /> },

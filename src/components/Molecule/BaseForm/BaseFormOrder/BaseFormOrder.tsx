@@ -1,12 +1,12 @@
 import { FormHelperText, Grid, IconButton, Stack, Typography } from "@mui/material";
 import {styled} from "@mui/material/styles"
 import {PhotoCamera} from "@mui/icons-material"
+import Buttons from "../../../Atom/Button/Button";
+import ControlTextField from "../../../Atom/Form/ControlTextField";
+import ControlSelect2 from "../../../Atom/Form/ControlSelect2";
 // 
-import ControlTextField from "../../Atom/Form/ControlTextField";
-import Buttons from "../../Atom/Button/Button";
-import ControlSelect2 from "../../Atom/Form/ControlSelect2";
 
-const BaseFormProduct = (props: any) => {
+const BaseFormOrder = (props: any) => {
     const {fakeOptions,fakeCategoey,form,onSubmit}=props;
     const {
         control,
@@ -14,12 +14,11 @@ const BaseFormProduct = (props: any) => {
         register,
         formState: { errors },
       } = form
-      console.log(errors)
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
     <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <ControlTextField id="outlined-basic"  label="Product Name" name="name" control={control} />
+          <ControlTextField id="outlined-basic"  label="Order ID" name="name" control={control} />
         </Grid>
         <Grid item xs={12} md={6}>
           <ControlTextField id="outlined-basic"  label="Quantity" name="quantity" control={control} />
@@ -34,7 +33,7 @@ const BaseFormProduct = (props: any) => {
          <ControlSelect2  options={fakeOptions}  label="Status" name="status" control={control}/>
         </Grid>
         <Grid item xs={12} md={6}>
-         <ControlSelect2  options={fakeCategoey}label="Category" name="category" control={control}/>
+         <ControlSelect2  options={fakeCategoey}label="Date" name="categories" control={control}/>
         </Grid>
         <Grid item xs={12} md={12}>
           <ControlTextField  id="outlined-multiline-flexible"
@@ -61,4 +60,4 @@ const Form = styled("form")({
     maxWidth:"1000px",
     margin:"0 auto"
     })
-export default BaseFormProduct
+export default BaseFormOrder

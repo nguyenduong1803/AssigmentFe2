@@ -1,15 +1,15 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
-import BasicTable from "../../Molecule/BasicTable/BasicTable";
 import MoreVery from "../../Atom/MoreVery/MoreVery";
+import BasicTable from "../../Molecule/BaseForm/BasicTable/BasicTable";
 
 export default function TableProduct(props: any) {
   const { data, tableName } = props;
-  const listKeyLabel = data ? Object.keys(data[0]) : [];
+  const labels =["ID","Name","Description","Price","Discount","Image","Comments","Create At"]
   // computed label
-  const listLabel = listKeyLabel.map((label, index) => (
-    <TableCell sx={{ textTransform: "capitalize" }} key={index} align="right">
+  const listLabel = labels.map((label, index) => (
+    <TableCell sx={{ textTransform: "capitalize" }} key={index}>
       {label}
     </TableCell>
   ));
@@ -21,16 +21,16 @@ export default function TableProduct(props: any) {
     >
       <TableCell component="th">{row._id}</TableCell>
       <TableCell component="th">{row.name}</TableCell>
-      <TableCell align="right">{row.price}</TableCell>
-      <TableCell align="right">{row.discount}</TableCell>
-      <TableCell align="right">{row.quantity}</TableCell>
-      <TableCell align="right">{row.description}</TableCell>
-      <TableCell align="right">{row.image}</TableCell>
-      <TableCell align="right">{row.create_at}</TableCell>
-      <TableCell align="right">
+      <TableCell >{row.describe}</TableCell>
+      <TableCell >{row.price}</TableCell>
+      <TableCell >{row.discount}</TableCell>
+      <TableCell >{row.comments}</TableCell>
+      <TableCell >{row.image}</TableCell> 
+      <TableCell >{row.createdAt}</TableCell>
+      <TableCell >
         <MoreVery tableName={tableName} id={row._id} />
       </TableCell>
     </TableRow>
-  ));
+  )) ||[];
   return <BasicTable listLabel={listLabel} listRow={listRow} />;
 }

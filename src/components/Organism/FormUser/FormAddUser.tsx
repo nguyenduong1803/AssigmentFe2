@@ -1,10 +1,13 @@
 import { useForm } from "react-hook-form";
-import { validationProduct } from "../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
-import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
+import { useEffect } from "react";
+
+import { validationProduct } from "../../../utils/Validate/FormProduct";
+import BaseFormUser from "../../Molecule/BaseForm/BaseFormUser/BaseFormUser";
 type Props = {};
 type FormData = {
   name: string;
+  status: string;
   file: File;
   quantity: number |  null;
   discount: number |  null;
@@ -14,14 +17,13 @@ type FormData = {
 const fakeOptions = ["Còn hàng", "Hết hàng"];
 const fakeCategoey = ["Điện thoại", "laptop"];
 
-const FormProduct = (props: Props) => {
+const FormAddUser = (props: Props) => {
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationProduct),
     defaultValues: validationProduct.getDefault(),
   });
   const onSubmit = async (data: any) => {
-    console.log("Data")
     console.log(data);
   };
   const options={
@@ -30,7 +32,10 @@ const FormProduct = (props: Props) => {
     form,
     onSubmit
   }
-  
-  return <BaseFormProduct {...options}  />;
+useEffect(()=>{
+  console.log("err",form.formState.errors)
+
+})  
+  return <BaseFormUser {...options}  />;
 };
-export default FormProduct;
+export default FormAddUser;
