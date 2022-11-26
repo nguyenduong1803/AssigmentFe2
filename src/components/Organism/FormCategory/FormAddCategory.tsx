@@ -8,10 +8,11 @@ type Props = {};
 type FormData = {
   name: string;
   status: string;
-  file: File;
-  quantity: number |  null;
-  discount: number |  null;
-  price: number |  null;
+  describe:string;
+  file?: File;
+  quantity: string ;
+  discount: string ;
+  price: string ;
 };
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];

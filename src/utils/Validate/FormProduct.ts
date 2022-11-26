@@ -26,20 +26,23 @@ const validationProduct = yup.object().shape({
     .required("Please enter category")
     .default(""),
   price: yup
-    .number()
-    .required("Please enter price")
-    .nullable()
-    .default(undefined),
+    .string()
+    .required("required")
+    .trim("Please remove the spaces")
+    .matches(Regexs.number, "only Number")
+    .default(""),
   quantity: yup
-    .number()
-    .required("Please enter quantity")
-    .nullable()
-    .default(undefined),
+    .string()
+    .required("required")
+    .trim("Please remove the spaces")
+    .matches(Regexs.number, "only Number")
+    .default(""),
   discount: yup
-    .number()
-    .required("Please enter discount")
-    .nullable()
-    .default(undefined),
+    .string()
+    .required("required")
+    .trim("Please remove the spaces")
+    .matches(Regexs.number, "only Number")
+    .default(""),
   file: yup.mixed().test("required", "Please choose  file", (value) => {
     return value[0];
   }),

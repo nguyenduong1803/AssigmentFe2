@@ -3,40 +3,37 @@ import { validationProduct } from "../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import BaseFormProduct from "../../Molecule/BaseForm/BaseFormProduct/BaseFormProduct";
-import { useQuery } from "react-query";
-import { getProductById } from "../../../services/productService/ProductService";
+import {
+  getProductById,
+  updateProduct,
+} from "../../../services/productService/ProductService";
 import { useParams } from "react-router-dom";
-type Props = {};
-type FormData = {
+interface FormData {
   name: string;
   status: string;
-  file: File;
-  quantity: number | null;
-  discount: number | null;
-  price: number | null;
-};
+  describe: string;
+  file?: File;
+  quantity: string;
+  discount: string;
+  price: string;
+  categories:string;
+}
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
 const fakeCategoey = ["Điện thoại", "laptop"];
-const fakeProduct = {
-  name: "prodcut",
-  status: "con hàng",
-  quantity: 2,
-  discount: 2,
-  price: 2000,
-};
-
-const FormEditProduct = (props: Props) => {
+const FormEditProduct = (props: any) => {
+  const [data, setData] = useState<FormData>();
   const { id } = useParams();
-  const [product, setProduct] = useState<FormData>();
-  console.log(id);
+
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationProduct),
     defaultValues: validationProduct.getDefault(),
   });
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     console.log(data);
+    const res = await updateProduct(id, data);
+    console.log(res);
   };
   const options = {
     fakeOptions,
@@ -44,15 +41,28 @@ const FormEditProduct = (props: Props) => {
     form,
     onSubmit,
   };
-  form.reset(fakeProduct);
   useEffect(() => {
-    const fetData = async () => {
-      const res = await getProductById("638066b3c040a0be519575b1");
-      console.log(res.data);
-      setProduct(res.data);
+    if (!id) return;
+    const fethData = async () => {
+      const res = await getProductById(id);
+      setData(res.data);
     };
-    fetData();
+    fethData();
   }, [id]);
+  // reset data
+  useEffect(() => {
+    if (!data) return;
+    form.reset({
+      name: data?.name,
+      status: data?.status,
+      quantity: data?.quantity,
+      price: data?.price,
+      discount: data?.discount,
+      describe: data?.describe,
+      categories:data?.categories
+    });
+  }, [data, form, form.reset, id]);
+
   return <BaseFormProduct {...options} />;
 };
 export default FormEditProduct;
