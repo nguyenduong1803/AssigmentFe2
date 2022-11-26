@@ -8,11 +8,11 @@ type Props = {};
 type FormData = {
   name: string;
   status: string;
-  categories: string;
-  file: File;
-  quantity: number |  null;
-  discount: number |  null;
-  price: number |  null;
+  describe:string;
+  file?: File;
+  quantity: string ;
+  discount: string ;
+  price: string ;
 };
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
@@ -20,9 +20,9 @@ const fakeCategoey = ["Điện thoại", "laptop"];
 const fakeProduct = {
     name: "prodcut",
     status: "con hàng",
-    quantity: 2,
-    discount: 2,
-    price: 2000,
+    quantity: "2",
+    discount: "2",
+    price: "2000",
   };
 const ViewOrder = (props: Props) => {
   const form = useForm<FormData>({

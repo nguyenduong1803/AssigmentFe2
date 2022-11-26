@@ -8,10 +8,11 @@ type Props = {};
 type FormData = {
   name: string;
   status: string;
-  file: File;
-  quantity: number |  null;
-  discount: number |  null;
-  price: number |  null;
+  describe:string;
+  file?: File;
+  quantity: string ;
+  discount: string ;
+  price: string ;
 };
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
@@ -19,9 +20,9 @@ const fakeCategoey = ["Điện thoại", "laptop"];
 const fakeUser = {
     name: "prodcut",
     status: "con hàng",
-    quantity: 2,
-    discount: 2,
-    price: 2000,
+    quantity: "2",
+    discount: "2",
+    price: "2000",
   };
 const FormEditUser = (props: Props) => {
   const form = useForm<FormData>({
@@ -41,7 +42,6 @@ const FormEditUser = (props: Props) => {
   form.reset(fakeUser)
 useEffect(()=>{
   console.log("err",form.formState.errors)
-
 })  
   return <BaseFormUser {...options}  />;
 };

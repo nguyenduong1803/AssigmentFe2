@@ -5,16 +5,14 @@ import ControlTextField from "../../../Atom/Form/ControlTextField";
 import ControlSelect2 from "../../../Atom/Form/ControlSelect2";
 import Buttons from "../../../Atom/Button/Button";
 // 
-
-
 const BaseFormProduct = (props: any) => {
-    const {fakeOptions,fakeCategoey,form,onSubmit}=props;
-    const {
-        control,
-        handleSubmit,
-        register,
-        formState: { errors },
-      } = form
+  const { fakeOptions, fakeCategoey, form, onSubmit } = props;
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = form;
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
     <Grid container spacing={3}>

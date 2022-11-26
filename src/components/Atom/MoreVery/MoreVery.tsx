@@ -11,21 +11,25 @@ const LinkStyle = styled(Link)({
   textDecoration: "none",
   color: "inherit",
 });
-type TypeProps={
-    id:number,
-    tableName:string,
-}
+type TypeProps = {
+  id: number;
+  tableName: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export default function MoreVery(props: TypeProps) {
-  const { id, tableName } = props;
+  const { id, tableName ,setOpen} = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorEl(null);
   };
+  const handleShowModalDelete=()=>{
+    setAnchorEl(null);
+    setOpen(true)
+  }
 
   return (
     <>
@@ -60,7 +64,7 @@ export default function MoreVery(props: TypeProps) {
         <LinkStyle to={`/manage/${tableName}/edit/${id}`}>
           <MenuItem onClick={handleClose}>Edit</MenuItem>
         </LinkStyle>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleShowModalDelete}>Delete</MenuItem>
       </Menu>
     </>
   );

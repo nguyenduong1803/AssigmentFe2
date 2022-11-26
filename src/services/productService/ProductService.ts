@@ -11,7 +11,7 @@ const getProduct = async () => {
   }
 };
 // get prodcut by id
-const getProductById = async (id: string|undefined) => {
+const getProductById = async (id: string | undefined) => {
   if (id) {
     try {
       const res = await HttpClient.get(`product/${id}`);
@@ -29,4 +29,21 @@ const addProduct = async (param: any) => {
     console.log(error);
   }
 };
-export { getProduct, getProductById, addProduct };
+interface ParamUpdateUser {
+  name: string;
+  status: string;
+  describe: string;
+  file?: File;
+  quantity: string;
+  discount: string;
+  price: string;
+}
+// add prodcut
+const updateProduct = async (id: string | undefined, data: ParamUpdateUser) => {
+  try {
+    return await HttpClient.put(`product/update/${id}`, data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export { getProduct, getProductById, addProduct, updateProduct };
