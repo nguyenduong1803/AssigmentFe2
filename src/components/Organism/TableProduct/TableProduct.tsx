@@ -1,13 +1,14 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
-import BasicModal from "../../Atom/Modal/ModalCofirm";
 
 import MoreVery from "../../Atom/MoreVery/MoreVery";
 import BasicTable from "../../Molecule/BaseForm/BasicTable/BasicTable";
+import ModalDelete from "../Modal/ModalDelete";
+import { removeProduct } from "../../../services/productService/ProductService";
 
 export default function TableProduct(props: any) {
-  const { data, tableName } = props;
+  const { data, tableName, onIsUpdate, isUpdate } = props;
   const [open, setOpen] = useState<boolean>(false);
   const labels = [
     "ID",
@@ -44,7 +45,14 @@ export default function TableProduct(props: any) {
         <TableCell>
           <MoreVery tableName={tableName} setOpen={setOpen} id={row._id} />
         </TableCell>
-        <BasicModal setOpen={setOpen} open={open} id={row._id}/>
+          <ModalDelete
+            removeProduct={removeProduct}
+            onIsUpdate={onIsUpdate}
+            isUpdate={isUpdate}
+            setOpen={setOpen}
+            id={row._id}
+            open={open}
+          />
       </TableRow>
     ));
   return <BasicTable listLabel={listLabel} listRow={listRow} />;
