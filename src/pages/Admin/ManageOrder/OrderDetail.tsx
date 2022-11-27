@@ -3,7 +3,7 @@ import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
 import Paper from "../../../components/Atom/Paper/Paper";
 import ViewOrder from "../../../components/Organism/FormOrder/ViewOrder";
-import FormEditProduct from "../../../components/Organism/FormProduct/FormEditProduct";
+import FormEditProduct from "../ManageProduct/Organism/FormProduct/FormEditProduct";
 type Props = {};
 
 const OrderDetail = (props: Props) => {
@@ -11,7 +11,7 @@ const OrderDetail = (props: Props) => {
     <>
       <BasicBreadcrumbs />
       <Paper elevation={1}>
-        <ViewOrder/>
+        <ViewOrder />
       </Paper>
     </>
   );

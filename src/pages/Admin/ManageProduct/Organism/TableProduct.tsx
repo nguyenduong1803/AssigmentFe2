@@ -2,10 +2,10 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
 
-import MoreVery from "../../Atom/MoreVery/MoreVery";
-import BasicTable from "../../Molecule/BaseForm/BasicTable/BasicTable";
-import ModalDelete from "../Modal/ModalDelete";
-import { removeProduct } from "../../../services/productService/ProductService";
+import MoreVery from "../../../../components/Atom/MoreVery/MoreVery";
+import BasicTable from "../../../../components/Molecule/BaseForm/BasicTable/BasicTable";
+import ModalDelete from "../../../../components/Organism/Modal/ModalDelete";
+import { removeProduct } from "../../../../services/productService/ProductService";
 
 export default function TableProduct(props: any) {
   const { data, tableName, onIsUpdate, isUpdate } = props;
@@ -45,14 +45,14 @@ export default function TableProduct(props: any) {
         <TableCell>
           <MoreVery tableName={tableName} setOpen={setOpen} id={row._id} />
         </TableCell>
-          <ModalDelete
-            removeProduct={removeProduct}
-            onIsUpdate={onIsUpdate}
-            isUpdate={isUpdate}
-            setOpen={setOpen}
-            id={row._id}
-            open={open}
-          />
+        <ModalDelete
+          removeProduct={removeProduct}
+          onIsUpdate={onIsUpdate}
+          isUpdate={isUpdate}
+          setOpen={setOpen}
+          id={row._id}
+          open={open}
+        />
       </TableRow>
     ));
   return <BasicTable listLabel={listLabel} listRow={listRow} />;

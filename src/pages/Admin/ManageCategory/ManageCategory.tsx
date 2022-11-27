@@ -1,9 +1,8 @@
 import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
-import Buttons from "../../../components/Atom/Button/Button";
-import TableProduct from "../../../components/Organism/TableProduct/TableProduct";
 import { Stack } from "@mui/material";
 import ButtonLink from "../../../components/Atom/Button/ButtonLink";
+import TableCategory from "./Organism/TableCategory";
 type Props = {};
 const data = [
   {
@@ -54,7 +53,7 @@ const ManageCategory = (props: Props) => {
         <BasicBreadcrumbs />
         <ButtonLink to="/manage/category/add">Add Category</ButtonLink>
       </Stack>
-      <TableProduct data={data} tableName="product" />
+      <TableCategory data={data} tableName="category" />
     </>
   );
 };

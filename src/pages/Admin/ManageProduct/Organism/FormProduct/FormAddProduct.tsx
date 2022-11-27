@@ -1,19 +1,19 @@
 import { useForm } from "react-hook-form";
-import { validationProduct } from "../../../utils/Validate/FormProduct";
+import { validationProduct } from "../../../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import BaseFormProduct from "../../Molecule/BaseForm/BaseFormProduct/BaseFormProduct";
-import { addProduct } from "../../../services/productService/ProductService";
+import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
+import { addProduct } from "../../../../../services/productService/ProductService";
 type Props = {};
 type FormData = {
   name: string;
   status: string;
-  describe:string;
+  describe: string;
   file?: File;
-  quantity: string ;
-  discount: string ;
-  price: string ;
-  categories:string;
+  quantity: string;
+  discount: string;
+  price: string;
+  categories: string;
 };
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
@@ -27,19 +27,18 @@ const FormAddProduct = (props: Props) => {
   });
   const onSubmit = async (data: any) => {
     console.log(data);
-   const res= await addProduct(data)
-  console.log(res)
+    const res = await addProduct(data);
+    console.log(res);
   };
-  const options={
+  const options = {
     fakeOptions,
     fakeCategoey,
     form,
-    onSubmit
-  }
-useEffect(()=>{
-  console.log("err",form.formState.errors)
-
-})  
-  return <BaseFormProduct {...options}  />;
+    onSubmit,
+  };
+  useEffect(() => {
+    console.log("err", form.formState.errors);
+  });
+  return <BaseFormProduct {...options} />;
 };
 export default FormAddProduct;
