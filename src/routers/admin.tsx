@@ -10,13 +10,14 @@ import { productRoute } from "./productRoute";
 import { userRoute } from "./userRoute";
 import { categoryRoute } from "./categoryRoute";
 import { orderRoute } from "./orderRoute";
+import DefaultLayout from "../components/Template/Layout/DefaultLayout";
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
 
 const routes: RouteObject[] = [
   // router client
   { 
-    path: "/", element: (<><Home /></> ),
+    path: "/", element: (<DefaultLayout><Home /></DefaultLayout> ),
   },
   // router admin manager
   {

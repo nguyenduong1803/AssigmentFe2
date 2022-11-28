@@ -6,12 +6,12 @@ import FormAddCategory from "./Organism/FormCategory/FormAddCategory";
 type Props = {};
 
 const AddCategory = (props: Props) => {
+
   return (
     <>
       <BasicBreadcrumbs />
       <Paper elevation={1}>
         <Typography variant="h5" textAlign="center" sx={{ py: 3 }}>
-          {" "}
           Add Category
         </Typography>
         <FormAddCategory />

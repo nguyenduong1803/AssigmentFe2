@@ -19,7 +19,7 @@ const BaseFormCategory = (props: any) => {
             id="outlined-basic"
             disabled
             label="Category ID"
-            name="id"
+            name="_id"
             control={control}
           />
         </Grid>

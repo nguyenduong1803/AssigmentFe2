@@ -1,41 +1,27 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
 
-import { validationProduct } from "../../../../../utils/Validate/FormProduct";
 import BaseFormCategory from "../../Molecule/BaseFormCategory";
-type Props = {};
+import { validationCategory } from "../../../../../utils/Validate/FormCategory";
+import { addCategory } from "../../../../../services/categoryService/CategoryService";
 type FormData = {
-  name: string;
-  status: string;
-  describe: string;
-  file?: File;
-  quantity: string;
-  discount: string;
-  price: string;
+  categoryName: string;
 };
-
-const fakeOptions = ["Còn hàng", "Hết hàng"];
-const fakeCategoey = ["Điện thoại", "laptop"];
-
-const FormAddCategory = (props: Props) => {
+const FormAddCategory = () => {
   const form = useForm<FormData>({
     mode: "onChange",
-    resolver: yupResolver(validationProduct),
-    defaultValues: validationProduct.getDefault(),
+    resolver: yupResolver(validationCategory),
+    defaultValues: validationCategory.getDefault(),
   });
   const onSubmit = async (data: any) => {
-    console.log(data);
+   const {categoryName} = data;
+   console.log(categoryName);
+    const res = await addCategory({categoryName})
   };
   const options = {
-    fakeOptions,
-    fakeCategoey,
     form,
     onSubmit,
   };
-  useEffect(() => {
-    console.log("err", form.formState.errors);
-  });
   return <BaseFormCategory {...options} />;
 };
 export default FormAddCategory;

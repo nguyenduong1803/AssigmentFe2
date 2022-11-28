@@ -1,0 +1,14 @@
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+body {
+  font-family: "Rubik", sans-serif;
+}

@@ -1,13 +1,13 @@
 import TemplateAdmin from "../components/Template/Admin/TemplateAdmin";
+import ManageOrder from "../pages/Admin/ManageOrder/ManageOrder";
 import OrderDetail from "../pages/Admin/ManageOrder/OrderDetail";
-import ManageUser from "../pages/Admin/ManageUser/ManageUser";
 
 export const orderRoute = {
   path: "order",
   children: [
     {
       index: true,
-      element: (<TemplateAdmin><ManageUser /> </TemplateAdmin>),
+      element: (<TemplateAdmin><ManageOrder /> </TemplateAdmin>),
     },
     {
       path: "detail/:id",

@@ -11,7 +11,7 @@ interface TypeProps extends ButtonProps {
 const Buttons = (props: TypeProps) => {
 
   return (
-      <Button {...props} sx={{ backgroundColor: "#fff" }}  variant="outlined"color="success"  size="medium">
+      <Button  variant="outlined"color="success"  size="medium" {...props}>
         {props.children}
       </Button>
   );

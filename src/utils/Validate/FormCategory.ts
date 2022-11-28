@@ -6,7 +6,7 @@ yup.setLocale({
   },
 });
 const validationCategory = yup.object().shape({
-    categoryName: yup
+  categoryName: yup
     .string()
     .trim("Please remove the spaces")
     .strict(true)
