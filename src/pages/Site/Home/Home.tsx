@@ -1,6 +1,7 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import Banner from "../../../components/Template/Banner/Banner";
+import RenderBlog from "../../../components/Template/RenderBlog/RenderBlog";
 import RenderProducts from "../../../components/Template/RenderProducts/RenderProducts";
 import SaleProduct from "../../../components/Template/SaleProduct/SaleProduct";
 import { getProduct } from "../../../services/productService/ProductService";
@@ -20,10 +21,11 @@ const Home: FC<Props> = () => {
   return (
     <>
       <Banner />
-      <SaleProduct/>
+      <SaleProduct />
       <Container maxWidth="xl">
-        <FilterCategory/>
-        <RenderProducts/>
+        <FilterCategory />
+        <RenderProducts />
+        <RenderBlog />
       </Container>
     </>
   );
