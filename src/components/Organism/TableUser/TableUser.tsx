@@ -1,10 +1,10 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
-import BasicModal from "../../Atom/Modal/ModalCofirm";
 
 import MoreVery from "../../Atom/MoreVery/MoreVery";
 import BasicTable from "../../Molecule/BaseForm/BasicTable/BasicTable";
+import ModalDelete from "../Modal/ModalDelete";
 
 export default function TableUser(props: any) {
   const { data, tableName } = props;
@@ -33,7 +33,7 @@ export default function TableUser(props: any) {
       <TableCell>
         <MoreVery tableName={tableName} setOpen={setOpen} id={row._id} />
       </TableCell>
-      <BasicModal setOpen={setOpen} open={open} id={row._id} />
+      {/* <ModalDelete setOpen={setOpen} open={open}  id={row._id} /> */}
     </TableRow>
   ));
   return <BasicTable listLabel={listLabel} listRow={listRow} />;

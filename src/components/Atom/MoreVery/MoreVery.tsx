@@ -12,7 +12,7 @@ const LinkStyle = styled(Link)({
   color: "inherit",
 });
 type TypeProps = {
-  id: number;
+  id: string;
   tableName: string;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -25,6 +25,7 @@ export default function MoreVery(props: TypeProps) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    setAnchorEl(null);
   };
   const handleShowModalDelete=()=>{
     setAnchorEl(null);
@@ -32,7 +33,7 @@ export default function MoreVery(props: TypeProps) {
   }
 
   return (
-    <>
+    <div>
       <IconButton
         aria-label="more"
         id="long-button"
@@ -66,6 +67,6 @@ export default function MoreVery(props: TypeProps) {
         </LinkStyle>
         <MenuItem onClick={handleShowModalDelete}>Delete</MenuItem>
       </Menu>
-    </>
+    </div>
   );
 }

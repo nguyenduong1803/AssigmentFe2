@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import { getTime } from "date-fns";
 import HttpClient from "../../utils/HtppClient";
 
@@ -46,4 +47,11 @@ const updateProduct = async (id: string | undefined, data: ParamUpdateUser) => {
     console.log(error);
   }
 };
-export { getProduct, getProductById, addProduct, updateProduct };
+const removeProduct = async (id:string | undefined) => {
+  try {
+    return await HttpClient.delete(`product/remove/`+id);
+  } catch (error) {
+    console.log(error);
+  }
+};
+export { getProduct, getProductById, addProduct, updateProduct,removeProduct};

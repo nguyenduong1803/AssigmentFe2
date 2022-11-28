@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -23,11 +23,12 @@ const style = {
 };
 type TypeProps = {
   open: boolean;
-  id: string;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  title:string;
+  children:ReactNode;
 };
 export default function BasicModal(props: TypeProps) {
-  const { open, id, setOpen } = props;
+  const { open, children, title,setOpen } = props;
   const handleClose = () => setOpen(false);
 
   return (
@@ -40,15 +41,10 @@ export default function BasicModal(props: TypeProps) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Do you want delete product?
+            {title}
           </Typography>
           <Stack direction="row" justifyContent="flex-end" gap="24px">
-            <Button color="error" variant="contained">
-              Cancel
-            </Button>
-            <Button variant="contained" color="success">
-              Delete
-            </Button>
+          {children}
           </Stack>
         </Box>
       </Modal>

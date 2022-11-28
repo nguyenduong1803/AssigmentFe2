@@ -3,11 +3,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
 import Paper from "../../../components/Atom/Paper/Paper";
-import FormEditProduct from "../../../components/Organism/FormProduct/FormEditProduct";
+import FormEditProduct from "./Organism/FormProduct/FormEditProduct";
 type Props = {};
 
 const EditProduct = (props: Props) => {
-  
   return (
     <>
       <BasicBreadcrumbs />
@@ -15,7 +14,7 @@ const EditProduct = (props: Props) => {
         <Typography variant="h5" textAlign="center" sx={{ py: 3 }}>
           Edit Product
         </Typography>
-        <FormEditProduct  />
+        <FormEditProduct />
       </Paper>
     </>
   );

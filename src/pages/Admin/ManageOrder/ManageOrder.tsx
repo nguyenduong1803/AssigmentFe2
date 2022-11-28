@@ -1,7 +1,7 @@
 import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
 import Buttons from "../../../components/Atom/Button/Button";
-import TableProduct from "../../../components/Organism/TableProduct/TableProduct";
+import TableProduct from "../ManageProduct/Organism/TableProduct";
 import { Stack } from "@mui/material";
 import ButtonLink from "../../../components/Atom/Button/ButtonLink";
 type Props = {};
@@ -51,7 +51,7 @@ const ManageProduct = (props: Props) => {
   return (
     <>
       <BasicBreadcrumbs />
-      <TableProduct data={data} tableName="product" />
+      {/* <TableProduct data={data} tableName="product" /> */}
     </>
   );
 };

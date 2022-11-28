@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { validationProduct } from "../../../utils/Validate/FormProduct";
+import { validationProduct } from "../../../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
-import BaseFormProduct from "../../Molecule/BaseForm/BaseFormProduct/BaseFormProduct";
+import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
 import {
   getProductById,
   updateProduct,
-} from "../../../services/productService/ProductService";
+} from "../../../../../services/productService/ProductService";
 import { useParams } from "react-router-dom";
 interface FormData {
   name: string;
@@ -16,7 +16,7 @@ interface FormData {
   quantity: string;
   discount: string;
   price: string;
-  categories:string;
+  categories: string;
 }
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
@@ -59,7 +59,7 @@ const FormEditProduct = (props: any) => {
       price: data?.price,
       discount: data?.discount,
       describe: data?.describe,
-      categories:data?.categories
+      categories: data?.categories,
     });
   }, [data, form, form.reset, id]);
 
