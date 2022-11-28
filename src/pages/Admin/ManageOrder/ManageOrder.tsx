@@ -1,58 +1,13 @@
 import React from "react";
 import BasicBreadcrumbs from "../../../components/Atom/Breadcrumbs/Breadcrumbs";
-import Buttons from "../../../components/Atom/Button/Button";
-import TableProduct from "../ManageProduct/Organism/TableProduct";
-import { Stack } from "@mui/material";
-import ButtonLink from "../../../components/Atom/Button/ButtonLink";
-type Props = {};
-const data = [
-  {
-    _id: 1,
-    name: "Product 1",
-    price: 100000,
-    quantity: 200,
-    discount: 23,
-    description: "product description",
-    image: "link image",
-    create_at: "10-12-2022",
-  },
-  {
-    _id: 2,
-    name: "Product 1",
-    price: 100000,
-    quantity: 200,
-    discount: 23,
-    description: "product description",
-    image: "link image",
-    create_at: "10-12-2022",
-  },
-  {
-    _id: 3,
-    name: "Product 1",
-    price: 100000,
-    quantity: 200,
-    discount: 23,
-    description: "product description",
-    image: "link image",
-    create_at: "10-12-2022",
-  },
-  {
-    _id: 4,
-    name: "Product 1",
-    price: 100000,
-    quantity: 200,
-    discount: 23,
-    description: "product description",
-    image: "link image",
-    create_at: "10-12-2022",
-  },
-];
-const ManageProduct = (props: Props) => {
+import TableOrder from "./Organism/TableOrder";
+
+const ManageOrder = () => {
   return (
     <>
       <BasicBreadcrumbs />
-      {/* <TableProduct data={data} tableName="product" /> */}
+      <TableOrder/>
     </>
   );
 };
-export default ManageProduct;
+export default ManageOrder;

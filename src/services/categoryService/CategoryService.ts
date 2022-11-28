@@ -30,13 +30,7 @@ const addCategory = async (param: any) => {
   }
 };
 interface ParamUpdateUser {
-  name: string;
-  status: string;
-  describe: string;
-  file?: File;
-  quantity: string;
-  discount: string;
-  price: string;
+  categoryName: string;
 }
 // add prodcut
 const updateCategory = async (id: string | undefined, data: ParamUpdateUser) => {
