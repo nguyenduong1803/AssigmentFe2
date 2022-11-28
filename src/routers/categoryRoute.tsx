@@ -1,5 +1,5 @@
-import FormAddCategory from "../components/Organism/FormCategory/FormAddCategory";
-import FormEditCategory from "../components/Organism/FormCategory/FormEditcategory";
+import FormAddCategory from "../pages/Admin/ManageCategory/Organism/FormCategory/FormAddCategory";
+import FormEditCategory from "../pages/Admin/ManageCategory/Organism/FormCategory/FormEditcategory";
 import TemplateAdmin from "../components/Template/Admin/TemplateAdmin";
 import AddCategory from "../pages/Admin/ManageCategory/AddCategory";
 import EditCategory from "../pages/Admin/ManageCategory/EditCategory";
@@ -10,15 +10,27 @@ export const categoryRoute = {
   children: [
     {
       index: true,
-      element: (<TemplateAdmin><ManageCategory /> </TemplateAdmin>),
+      element: (
+        <TemplateAdmin>
+          <ManageCategory />{" "}
+        </TemplateAdmin>
+      ),
     },
     {
       path: "edit/:id",
-      element: (<TemplateAdmin><EditCategory  /> </TemplateAdmin>),
+      element: (
+        <TemplateAdmin>
+          <EditCategory />{" "}
+        </TemplateAdmin>
+      ),
     },
     {
       path: "add",
-      element: (<TemplateAdmin><AddCategory /> </TemplateAdmin>),
+      element: (
+        <TemplateAdmin>
+          <AddCategory />{" "}
+        </TemplateAdmin>
+      ),
     },
   ],
 };

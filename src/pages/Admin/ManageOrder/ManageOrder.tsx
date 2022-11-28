@@ -51,7 +51,7 @@ const ManageProduct = (props: Props) => {
   return (
     <>
       <BasicBreadcrumbs />
-      <TableProduct data={data} tableName="product" />
+      {/* <TableProduct data={data} tableName="product" /> */}
     </>
   );
 };

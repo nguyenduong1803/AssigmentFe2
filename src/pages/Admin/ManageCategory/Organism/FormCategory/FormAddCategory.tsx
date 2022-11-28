@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 
-import { validationProduct } from "../../../utils/Validate/FormProduct";
-import BaseFormCategory from "../../../pages/Admin/ManageCategory/Molecule/BaseFormCategory/BaseFormCategory";
+import { validationProduct } from "../../../../../utils/Validate/FormProduct";
+import BaseFormCategory from "../../Molecule/BaseFormCategory";
 type Props = {};
 type FormData = {
   name: string;
@@ -17,14 +17,8 @@ type FormData = {
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
 const fakeCategoey = ["Điện thoại", "laptop"];
-const fakeUser = {
-  name: "prodcut",
-  status: "con hàng",
-  quantity: "2",
-  discount: "2",
-  price: "2000",
-};
-const FormEditCategory = (props: Props) => {
+
+const FormAddCategory = (props: Props) => {
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationProduct),
@@ -39,10 +33,9 @@ const FormEditCategory = (props: Props) => {
     form,
     onSubmit,
   };
-  form.reset(fakeUser);
   useEffect(() => {
     console.log("err", form.formState.errors);
   });
   return <BaseFormCategory {...options} />;
 };
-export default FormEditCategory;
+export default FormAddCategory;

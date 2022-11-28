@@ -1,19 +1,11 @@
-import {
-  FormHelperText,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { PhotoCamera } from "@mui/icons-material";
 //
-import ControlTextField from "../../../../../components/Atom/Form/ControlTextField";
-import Buttons from "../../../../../components/Atom/Button/Button";
-import ControlSelect2 from "../../../../../components/Atom/Form/ControlSelect2";
+import ControlTextField from "../../../../components/Atom/Form/ControlTextField";
+import Buttons from "../../../../components/Atom/Button/Button";
 
 const BaseFormCategory = (props: any) => {
-  const { fakeOptions, fakeCategoey, form, onSubmit } = props;
+  const { form, onSubmit } = props;
   const {
     control,
     handleSubmit,
@@ -35,12 +27,14 @@ const BaseFormCategory = (props: any) => {
           <ControlTextField
             id="outlined-basic"
             label="Category Name"
-            name="category"
+            name="categoryName"
             control={control}
           />
         </Grid>
+        <Grid item>
+          <Buttons type="submit">Submit</Buttons>
+        </Grid>
       </Grid>
-      <Buttons type="submit">Submit</Buttons>
     </Form>
   );
 };

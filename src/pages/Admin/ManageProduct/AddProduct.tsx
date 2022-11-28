@@ -11,7 +11,6 @@ const AddProduct = (props: Props) => {
       <BasicBreadcrumbs />
       <Paper elevation={1}>
         <Typography variant="h5" textAlign="center" sx={{ py: 3 }}>
-          {" "}
           Add Product
         </Typography>
         <FormAddProduct />
