@@ -1,0 +1,31 @@
+import { Box, Container, Grid, Typography } from "@mui/material";
+import React from "react";
+import Banner from "../../../components/Template/Banner/Banner";
+import RenderProducts from "../../../components/Template/RenderProducts/RenderProducts";
+import FilterProduct from "./Template/FilterProduct";
+
+type Props = {};
+
+const Products = (props: Props) => {
+  return (
+    <>
+      <Banner />
+      <Typography variant="h3" textAlign="center" my={4}>
+        Shop
+      </Typography>
+      <Container maxWidth="xl">
+        <Grid container spacing={4}>
+          <Grid item xs={3}>
+            <Box border="1px solid #e4e4e4">
+                <FilterProduct/>
+            </Box>
+          </Grid>
+          <Grid item xs={9}>
+            <RenderProducts xs={4} />
+          </Grid>
+        </Grid>
+      </Container>
+    </>
+  );
+};
+export default Products;

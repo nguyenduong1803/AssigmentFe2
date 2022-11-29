@@ -1,4 +1,5 @@
 import { Box, Grid } from "@mui/material";
+import { Container } from "@mui/system";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { getProduct } from "../../../services/productService/ProductService";
@@ -9,7 +10,10 @@ type TypeCart = {
   productId: string;
   quantity: number;
 };
-const RenderProducts = () => {
+  type TypeProps={
+    xs:number
+  }
+  const RenderProducts = ({xs}:TypeProps) => {
   const [cart, setCart] = useState<TypeCart[]>(
     () => LocalStorage.get("cart") || []
   );
@@ -17,29 +21,31 @@ const RenderProducts = () => {
     "repoData",
     () => getProduct(),
     {
-      // staleTime: 4000,
+      staleTime: 6000,
     }
   );
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: </p>;
   return (
-    <Grid container mt={2} spacing={4}>
-      {data &&
-        data.data.map((item: any) => {
-          return (
-            <Grid item xs={3} key={item._id}>
-              <Product
-                setCart={setCart}
-                image=""
-                id={item._id}
-                name={item.name}
-                price={item.price}
-                discount={item.discount}
-              />
-            </Grid>
-          );
-        })}
-    </Grid>
+  <>
+      <Grid container spacing={4} width="100%">
+        {data &&
+          data.data.map((item: any) => {
+            return (
+              <Grid item xs={xs} key={item._id} >
+                <Product
+                  setCart={setCart}
+                  image=""
+                  id={item._id}
+                  name={item.name}
+                  price={item.price}
+                  discount={item.discount}
+                />
+              </Grid>
+            );
+          })}
+      </Grid>
+  </>
   );
 };
 

@@ -23,21 +23,21 @@ const Header = () => {
             sx={{ listStyle: "none" }}
             alignItems="center"
           >
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/">Home</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/about">Product</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/about">Contacts</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/about">About</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/product">Blog</LinkTo>
-            </MenuItem>
+            <LinkTo to="/">
+              <Item sx={{ borderRadius: "4px" }}> Home</Item>
+            </LinkTo>
+            <LinkTo to="/products">
+              <Item sx={{ borderRadius: "4px" }}> Product</Item>
+            </LinkTo>
+            <LinkTo to="/about">
+              <Item sx={{ borderRadius: "4px" }}> About</Item>
+            </LinkTo>
+            <LinkTo to="/blog">
+              <Item sx={{ borderRadius: "4px" }}> Blog</Item>
+            </LinkTo>
+            <LinkTo to="/contacts">
+              <Item sx={{ borderRadius: "4px" }}> Contacts</Item>
+            </LinkTo>
           </Stack>
         </Grid>
         <Grid item>
@@ -63,6 +63,9 @@ const Wrap = styled(Box)({
 });
 const LinkTo = styled(Link)({
   textDecoration: "none",
+
+})
+const Item = styled(MenuItem)({
   color: "#10111e;",
   fontWeight: "600",
   fontSize: "15px",

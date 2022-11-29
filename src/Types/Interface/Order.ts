@@ -1,5 +1,6 @@
 export interface IOrder {
-    _id: string;
+  _id: string;
+  username: string;
   userId: string;
   address: string;
   phoneNumber: string;

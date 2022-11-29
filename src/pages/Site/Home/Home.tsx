@@ -24,7 +24,7 @@ const Home: FC<Props> = () => {
       <SaleProduct />
       <Container maxWidth="xl">
         <FilterCategory />
-        <RenderProducts />
+        <RenderProducts xs={3} />
         <RenderBlog />
       </Container>
     </>

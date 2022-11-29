@@ -11,6 +11,8 @@ import { userRoute } from "./userRoute";
 import { categoryRoute } from "./categoryRoute";
 import { orderRoute } from "./orderRoute";
 import DefaultLayout from "../components/Template/Layout/DefaultLayout";
+import Products from "../pages/Site/Products/Products";
+import Checkout from "../pages/Site/Checkout/Checkout";
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
 
@@ -18,6 +20,12 @@ const routes: RouteObject[] = [
   // router client
   { 
     path: "/", element: (<DefaultLayout><Home /></DefaultLayout> ),
+  },
+  { 
+    path: "/products", element: (<DefaultLayout><Products /></DefaultLayout> ),
+  },
+  { 
+    path: "/checkout", element: (<DefaultLayout><Checkout /></DefaultLayout> ),
   },
   // router admin manager
   {
