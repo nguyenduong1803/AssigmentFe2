@@ -12,7 +12,7 @@ const ManageCategory = (props: Props) => {
     <>
       <Stack direction="row" justifyContent="space-between" marginBottom={2}>
         <BasicBreadcrumbs />
-        <ButtonLink to="/manage/category/add">Add Category</ButtonLink>
+        <ButtonLink  to="/manage/category/add">Add Category</ButtonLink>
       </Stack>
       <TableCategory />
     </>

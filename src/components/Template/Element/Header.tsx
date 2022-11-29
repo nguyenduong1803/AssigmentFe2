@@ -2,12 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
-import {
-  Grid,
-  IconButton,
-  MenuItem,
-  Stack,
-} from "@mui/material";
+import { Grid, IconButton, MenuItem, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Cart from "../Cart/Cart";
@@ -53,8 +48,7 @@ const Header = () => {
             <IconButton size="medium" sx={{ ml: 2 }} aria-haspopup="true">
               <AccountCircleIcon fontSize="medium" />
             </IconButton>
-            
-     <Cart/>
+            <Cart />
           </Stack>
         </Grid>
       </Grid>

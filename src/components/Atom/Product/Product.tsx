@@ -1,14 +1,17 @@
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LocalStorage from "../../../utils/LocalStorage";
+import ToastMess from "../ToastMess/ToastMess";
 type Props = {
   id: string;
   image: string;
   name: string;
   price: number;
   discount?: number;
+  setCart: Dispatch<SetStateAction<TypeCart[]>>;
 };
 type TypeCart = {
   productId: string;
@@ -16,33 +19,28 @@ type TypeCart = {
 };
 
 const Product = (props: Props) => {
-  const [cart, setCart] = useState<TypeCart[]>();
+  const [openToast, setOpenToast] = React.useState<boolean>(false);
+
+  const { image, name, price, discount, id, setCart } = props;
+
   const handleAddCart = (productId: string) => {
-    setCart((prev:any) => {
-      const isExist = prev.some((element:TypeCart) => {
+    setCart((prev: TypeCart[]) => {
+      const isExist = prev.some((element: TypeCart) => {
         return element.productId === productId;
       });
-      if (!isExist) {
-        const newValue = [
-          ...prev,
-          {
-            productId,
-            quantity: 1,
-          },
-        ];
-        localStorage.setItem("cart", JSON.stringify(newValue));
-        return newValue;
-      } else {
-        const index = prev.findIndex(
-          (element:TypeCart) => element.productId === productId
-        );
+      if (isExist) {
+        const index = prev.findIndex((item) => item.productId === productId);
         prev[index].quantity += 1;
-        localStorage.setItem("cart", JSON.stringify(prev));
-        return prev;
+        LocalStorage.set("cart", [...prev]);
+        return [...prev];
+      } else {
+        const newCart = [...prev, { productId, quantity: 1 }]
+        LocalStorage.set("cart", newCart);
+        return newCart;
       }
     });
+    setOpenToast(true);
   };
-  const { image, name, price, discount, id } = props;
   return (
     <Box>
       <BoxImage position="relative">
@@ -88,6 +86,13 @@ const Product = (props: Props) => {
           ${discount}
         </Typography>
       </Stack>
+      <ToastMess
+        setState={setOpenToast}
+        state={openToast}
+        message="Đã thêm vào giỏ hàng"
+        variant="filled"
+        severity="success"
+      />
     </Box>
   );
 };

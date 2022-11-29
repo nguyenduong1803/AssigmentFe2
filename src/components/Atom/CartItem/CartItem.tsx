@@ -1,6 +1,7 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+}
 
 const CartItem = (props: Props) => {
   return (
