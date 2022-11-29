@@ -1,5 +1,5 @@
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -10,8 +10,38 @@ type Props = {
   price: number;
   discount?: number;
 };
+type TypeCart = {
+  productId: string;
+  quantity: number;
+};
 
 const Product = (props: Props) => {
+  const [cart, setCart] = useState<TypeCart[]>();
+  const handleAddCart = (productId: string) => {
+    setCart((prev:any) => {
+      const isExist = prev.some((element:TypeCart) => {
+        return element.productId === productId;
+      });
+      if (!isExist) {
+        const newValue = [
+          ...prev,
+          {
+            productId,
+            quantity: 1,
+          },
+        ];
+        localStorage.setItem("cart", JSON.stringify(newValue));
+        return newValue;
+      } else {
+        const index = prev.findIndex(
+          (element:TypeCart) => element.productId === productId
+        );
+        prev[index].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(prev));
+        return prev;
+      }
+    });
+  };
   const { image, name, price, discount, id } = props;
   return (
     <Box>
@@ -24,11 +54,21 @@ const Product = (props: Props) => {
         <Sale>Sale</Sale>
         <WrapIcon className="productIcon">
           <Stack direction="row" spacing={2}>
-            <IconButton sx={{ backgroundColor: "#fff",boxShadow: "rgba(34, 34, 34, 0.1) 0px 4px 12px;" }}>
+            <IconButton
+              sx={{
+                backgroundColor: "#fff",
+                boxShadow: "rgba(34, 34, 34, 0.1) 0px 4px 12px;",
+              }}
+            >
               <RemoveRedEyeIcon />
             </IconButton>
-            <IconButton sx={{ backgroundColor: "#fff",boxShadow: "rgba(34, 34, 34, 0.1) 0px 4px 12px;"  }}>
-              <ShoppingCartIcon />
+            <IconButton
+              sx={{
+                backgroundColor: "#fff",
+                boxShadow: "rgba(34, 34, 34, 0.1) 0px 4px 12px;",
+              }}
+            >
+              <ShoppingCartIcon onClick={() => handleAddCart(id)} />
             </IconButton>
           </Stack>
         </WrapIcon>
@@ -67,7 +107,7 @@ const WrapIcon = styled(Box)({
   position: "absolute",
   bottom: "0px",
   left: "50%",
-  transform:"translateX(-50%)",
+  transform: "translateX(-50%)",
   opacity: 0,
   visibility: "hidden",
   transition: "0.5s",
@@ -76,8 +116,7 @@ const BoxImage = styled(Box)({
   "&:hover .productIcon": {
     opacity: 1,
     visibility: "visible",
-    bottom:"15px",
-   
+    bottom: "15px",
   },
 });
 export default Product;
