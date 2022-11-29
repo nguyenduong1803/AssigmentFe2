@@ -1,5 +1,4 @@
-import { Box, Grid } from "@mui/material";
-import { Container } from "@mui/system";
+import { Box, Grid, Pagination, Stack } from "@mui/material";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { getProduct } from "../../../services/productService/ProductService";
@@ -10,10 +9,10 @@ type TypeCart = {
   productId: string;
   quantity: number;
 };
-  type TypeProps={
-    xs:number
-  }
-  const RenderProducts = ({xs}:TypeProps) => {
+type TypeProps = {
+  xs: number;
+};
+const RenderProducts = ({ xs }: TypeProps) => {
   const [cart, setCart] = useState<TypeCart[]>(
     () => LocalStorage.get("cart") || []
   );
@@ -27,12 +26,12 @@ type TypeCart = {
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: </p>;
   return (
-  <>
+    <>
       <Grid container spacing={4} width="100%">
         {data &&
           data.data.map((item: any) => {
             return (
-              <Grid item xs={xs} key={item._id} >
+              <Grid item xs={xs} key={item._id}>
                 <Product
                   setCart={setCart}
                   image=""
@@ -45,7 +44,12 @@ type TypeCart = {
             );
           })}
       </Grid>
-  </>
+     <Box display="flex" justifyContent="center" my={5}>
+        <Stack spacing={2}>
+          <Pagination count={10}   variant="outlined" color="primary"/>
+        </Stack>
+     </Box>
+    </>
   );
 };
 

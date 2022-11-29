@@ -60,6 +60,7 @@ const Wrap = styled(Box)({
   display: "flex",
   alignItems: "center",
   height: "90px",
+  boxShadow: "rgb(100 100 111 / 14%) 0px 5px 12px 0px;"
 });
 const LinkTo = styled(Link)({
   textDecoration: "none",
