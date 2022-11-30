@@ -25,7 +25,7 @@ const BaseFormProduct = (props: any) => {
   } = form;
   const [file] = watch(["file"]);
   useEffect(() => {
-    if (file) {
+    if (file&&file[0]) {
       const readURL = (input: File) => {
         setUrlImage(URL.createObjectURL(input));
       };

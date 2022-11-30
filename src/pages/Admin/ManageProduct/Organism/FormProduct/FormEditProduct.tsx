@@ -8,11 +8,12 @@ import {
   updateProduct,
 } from "../../../../../services/productService/ProductService";
 import { useParams } from "react-router-dom";
+import { getBase64 } from "../../../../../utils/Base64";
 interface FormData {
   name: string;
   status: string;
   describe: string;
-  file?: File;
+  file: File[];
   quantity: string;
   discount: string;
   price: string;
@@ -31,8 +32,9 @@ const FormEditProduct = (props: any) => {
     defaultValues: validationProduct.getDefault(),
   });
   const onSubmit = async (data: FormData) => {
-    console.log(data);
-    const res = await updateProduct(id, data);
+    const base64 = await getBase64(data?.file[0]);
+    const newData = { ...data, file: base64 };
+    const res = await updateProduct(id, newData);
     console.log(res);
   };
   const options = {
