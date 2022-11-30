@@ -10,15 +10,28 @@ import { PhotoCamera } from "@mui/icons-material";
 import ControlTextField from "../../../../../components/Atom/Form/ControlTextField";
 import ControlSelect2 from "../../../../../components/Atom/Form/ControlSelect2";
 import Buttons from "../../../../../components/Atom/Button/Button";
+import { useEffect, useState } from "react";
 //
 const BaseFormProduct = (props: any) => {
   const { fakeOptions, fakeCategoey, form, onSubmit } = props;
+  const [urlImage, setUrlImage] = useState<string>("");
+
   const {
     control,
     handleSubmit,
     register,
+    watch,
     formState: { errors },
   } = form;
+  const [file] = watch(["file"]);
+  useEffect(() => {
+    if (file) {
+      const readURL = (input: File) => {
+        setUrlImage(URL.createObjectURL(input));
+      };
+      readURL(file[0])
+    }
+  }, [file]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
@@ -91,6 +104,7 @@ const BaseFormProduct = (props: any) => {
               <input hidden {...register("file")} type="file" />
               <PhotoCamera />
             </IconButton>
+            {urlImage && <img width="150px" height="150px" src={urlImage}/>}
           </Stack>
           <FormHelperText sx={{ color: "#d32f2f" }} variant="outlined">
             {errors.file?.message && errors.file?.message}

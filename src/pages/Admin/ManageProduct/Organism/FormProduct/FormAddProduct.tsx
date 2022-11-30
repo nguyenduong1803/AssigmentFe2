@@ -4,12 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
 import { addProduct } from "../../../../../services/productService/ProductService";
+import { getBase64 } from "../../../../../utils/Base64";
 type Props = {};
 type FormData = {
   name: string;
   status: string;
   describe: string;
-  file?: File;
+  file: File[];
   quantity: string;
   discount: string;
   price: string;
@@ -25,9 +26,11 @@ const FormAddProduct = (props: Props) => {
     resolver: yupResolver(validationProduct),
     defaultValues: validationProduct.getDefault(),
   });
-  const onSubmit = async (data: any) => {
-    console.log(data);
-    const res = await addProduct(data);
+  const onSubmit = async (data: FormData) => {
+    console.log(data.file);
+    const base64 = await getBase64(data.file[0])
+    const newData = {...data,file:base64}
+    const res = await addProduct(newData);
     console.log(res);
   };
   const options = {

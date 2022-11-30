@@ -52,7 +52,7 @@ const routes: RouteObject[] = [
     ]
   },
   { path: "404", element: <Page404 /> },
-  { path: "*", element: <Navigate to="/404" /> },
+  // { path: "*", element: <Navigate to="/404" /> },
 ];
 const RouterAdmin = () => {
   const routesDashboard = useRoutes(routes);

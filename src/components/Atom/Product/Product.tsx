@@ -46,7 +46,7 @@ const Product = (props: Props) => {
       <BoxImage position="relative">
         <img
           style={{ width: "100%", height: "300px", objectFit: "cover" }}
-          src="https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/pro2.jpg"
+          src={image}
           alt=""
         />
         <Sale>Sale</Sale>
