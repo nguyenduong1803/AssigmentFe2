@@ -2,12 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
-import {
-  Grid,
-  IconButton,
-  MenuItem,
-  Stack,
-} from "@mui/material";
+import { Grid, IconButton, MenuItem, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Cart from "../Cart/Cart";
@@ -28,21 +23,21 @@ const Header = () => {
             sx={{ listStyle: "none" }}
             alignItems="center"
           >
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/">Home</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/about">Product</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/about">Contacts</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/about">About</LinkTo>
-            </MenuItem>
-            <MenuItem sx={{ borderRadius: "4px" }}>
-              <LinkTo to="/product">Blog</LinkTo>
-            </MenuItem>
+            <LinkTo to="/">
+              <Item sx={{ borderRadius: "4px" }}> Home</Item>
+            </LinkTo>
+            <LinkTo to="/products">
+              <Item sx={{ borderRadius: "4px" }}> Product</Item>
+            </LinkTo>
+            <LinkTo to="/about">
+              <Item sx={{ borderRadius: "4px" }}> About</Item>
+            </LinkTo>
+            <LinkTo to="/blog">
+              <Item sx={{ borderRadius: "4px" }}> Blog</Item>
+            </LinkTo>
+            <LinkTo to="/contacts">
+              <Item sx={{ borderRadius: "4px" }}> Contacts</Item>
+            </LinkTo>
           </Stack>
         </Grid>
         <Grid item>
@@ -53,8 +48,7 @@ const Header = () => {
             <IconButton size="medium" sx={{ ml: 2 }} aria-haspopup="true">
               <AccountCircleIcon fontSize="medium" />
             </IconButton>
-            
-     <Cart/>
+            <Cart />
           </Stack>
         </Grid>
       </Grid>
@@ -66,9 +60,13 @@ const Wrap = styled(Box)({
   display: "flex",
   alignItems: "center",
   height: "90px",
+  boxShadow: "rgb(100 100 111 / 14%) 0px 5px 12px 0px;"
 });
 const LinkTo = styled(Link)({
   textDecoration: "none",
+
+})
+const Item = styled(MenuItem)({
   color: "#10111e;",
   fontWeight: "600",
   fontSize: "15px",
