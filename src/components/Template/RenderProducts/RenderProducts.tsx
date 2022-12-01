@@ -34,7 +34,7 @@ const RenderProducts = ({ xs }: TypeProps) => {
               <Grid item xs={xs} key={item._id}>
                 <Product
                   setCart={setCart}
-                  image=""
+                  image={item.images[0]}
                   id={item._id}
                   name={item.name}
                   price={item.price}

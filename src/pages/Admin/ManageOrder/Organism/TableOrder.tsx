@@ -10,7 +10,7 @@ import {
   getCategory,
   removeCategory,
 } from "../../../../services/categoryService/CategoryService";
-import { getOrder } from "../../../../services/orderService/Orderservice";
+import { getOrder } from "../../../../services/orderService/OrderService";
 import { IOrder } from "../../../../Types/Interface/Order";
 
 export default function TableOrder(props: any) {
