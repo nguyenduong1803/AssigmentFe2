@@ -6,12 +6,12 @@ import { useQuery } from "react-query";
 import MoreVery from "../../../../components/Atom/MoreVery/MoreVery";
 import BasicTable from "../../../../components/Molecule/BaseForm/BasicTable/BasicTable";
 import ModalDelete from "../../../../components/Organism/Modal/ModalDelete";
+import { IOrder } from "../../../../Types/Interface/Order";
+import { getOrder } from "../../../../services/orderService/OrderService";
+
 import {
-  getCategory,
   removeCategory,
 } from "../../../../services/categoryService/CategoryService";
-import { getOrder } from "../../../../services/orderService/OrderService";
-import { IOrder } from "../../../../Types/Interface/Order";
 
 export default function TableOrder(props: any) {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
