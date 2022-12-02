@@ -31,4 +31,19 @@ const validationProduct = yup.object().shape({
       return value[0] ;
     }),
 });
-export { validationProduct };
+const validationLogin = yup.object().shape({
+  email: yup
+    .string()
+    .trim("Please remove the spaces")
+    .strict(true)
+    .required("Please enter email")
+    .matches(Regexs.email, 'schema.validEmail')
+    .default(""),
+  password: yup
+    .string()
+    .trim("Please remove the spaces")
+    .strict(true)
+    .required("Please enter password")
+    .default(""),
+});
+export { validationProduct,validationLogin };

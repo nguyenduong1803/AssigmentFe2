@@ -1,4 +1,4 @@
-import { IOrder } from "../../Types/Interface/Order";
+import { FormOrder, IOrder } from "../../Types/Interface/Order";
 import HttpClient from "../../utils/HtppClient";
 
 // get list order
@@ -22,7 +22,7 @@ const getOrderById = async (id: string | undefined) => {
   }
 };
 // add order
-const addOrder = async (param: IOrder) => {
+const addOrder = async (param: FormOrder) => {
   try {
     return await HttpClient.post(`order/add`, param);
   } catch (error) {

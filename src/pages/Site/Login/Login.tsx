@@ -1,17 +1,25 @@
-import { Container, Grid } from '@mui/material'
-import React from 'react'
+import { Container, Grid } from "@mui/material";
+import React from "react";
+import firebase from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../../services/firebase/firebase";
+import loginGoogle from "../../../services/firebase/LoginGoogle";
+import LocalStorage from "../../../utils/LocalStorage";
+import FormLogin from "./Organism/FormLogin";
+import { login } from "../../../services/UserService/Auth";
 
-type Props = {}
+const provider = new GoogleAuthProvider();
+type Props = {};
 
 const Login = (props: Props) => {
   return (
-    <div>
-        <Container>
-            <Grid container maxWidth="lg">
-                asdf
-            </Grid>
-        </Container>
-    </div>
-  )
-}
-export default Login
+    <>
+      <Container>
+        <Grid>
+          <FormLogin />
+        </Grid>
+      </Container>
+    </>
+  );
+};
+export default Login;

@@ -34,7 +34,7 @@ interface ParamUpdateUser {
   name: string;
   status: string;
   describe: string;
-  file?: File;
+  file?: string;
   quantity: string;
   discount: string;
   price: string;
