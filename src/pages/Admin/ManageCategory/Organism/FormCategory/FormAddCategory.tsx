@@ -14,9 +14,9 @@ const FormAddCategory = () => {
     defaultValues: validationCategory.getDefault(),
   });
   const onSubmit = async (data: any) => {
-   const {categoryName} = data;
-   console.log(categoryName);
-    const res = await addCategory({categoryName})
+    const { categoryName } = data;
+    console.log(categoryName);
+    const res = await addCategory({ categoryName });
   };
   const options = {
     form,

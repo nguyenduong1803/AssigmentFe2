@@ -9,7 +9,7 @@ import { actionLogin } from "../../../../redux/sliceReducer/AuthSlice";
 import { AppDispatch } from "../../../../redux/store";
 import { auth } from "../../../../services/firebase/firebase";
 import loginGoogle from "../../../../services/firebase/LoginGoogle";
-import { login } from "../../../../services/UserService/Auth";
+import { login, verifyToken } from "../../../../services/UserService/Auth";
 import LocalStorage from "../../../../utils/LocalStorage";
 import { validationLogin } from "../../../../utils/Validate/FormUser";
 import BaseFormLogin from "../Molecule/BaseFormLogin";
@@ -31,19 +31,22 @@ const FormLogin = (props: Props) => {
     defaultValues: validationLogin.getDefault(),
   });
   const onSubmit = async (data: any) => {
-    const { forgotpassword } = data;
-    const body: FormData = data.body;
-    const res = dispatch(actionLogin(body));
+    const { forgotpassword,...body } = data;
+    // const body: FormData = data.body;
+    const res =await dispatch(actionLogin(body));
     if (!res) {
       setOpenToast(true);
       return;
     }
+    // const res = await verifyToken("register")
+    console.log(res)
   };
   //   handle login google
   const handleLoginGoogle = async () => {
     const res = await signInWithPopup(auth, provider);
     const idToken = await res.user.getIdToken();
     LocalStorage.set("accessToken", idToken);
+    LocalStorage.set("typeLogin", "google");
     if (idToken) {
       navigate("/");
     }

@@ -8,11 +8,10 @@ import type {
 import LocalStorage from "./LocalStorage";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
-console.log(baseURL);
+
 const headers: AxiosRequestConfig["headers"] = {
   "Content-Type": "application/json",
 };
-
 class Axios {
   private instance: AxiosInstance;
   private interceptors: number | null = null;
@@ -25,8 +24,10 @@ class Axios {
     instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
         const accessToken = LocalStorage.get("accessToken");
+        console.log(config);
         if (config.headers) {
-          if (accessToken) {
+          if (accessToken ) {
+            console.log(config.url !== "auths/login");
             config.headers.Authorization = "Bearer " + accessToken;
           } else {
             delete config.headers.Authorization;

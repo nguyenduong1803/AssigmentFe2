@@ -22,17 +22,23 @@ const logout = async (id: string | undefined) => {
   }
 };
 
-const verifyToken = async (token: string | undefined) => {
+interface IAuth {
+  fullname: string;
+  email: string;
+  isAdmin: boolean;
+  updatedAt: string;
+  password: string;
+  _id: string;
+}
+const verifyToken = async (type: any | undefined) => {
   //
-  if (token) {
-    try {
-      const res = await HttpClient.get(`auths/verifyToken`, {
-        headers: { 'Authorization': `Bearer ${LocalStorage.get("accessToken")}`},
-      });
-      return res;
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    const res = await HttpClient.post(`auths/verifyToken`, {
+      body: type,
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
   }
 };
 
