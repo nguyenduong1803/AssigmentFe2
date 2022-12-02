@@ -6,6 +6,7 @@ import { Grid, IconButton, MenuItem, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Cart from "../Cart/Cart";
+import IconProfile from "components/Atom/IconProfile/IconProfile";
 const Header = () => {
   return (
     <Wrap>
@@ -45,9 +46,7 @@ const Header = () => {
             <IconButton size="medium" sx={{ ml: 2 }} aria-haspopup="true">
               <SearchIcon fontSize="medium" />
             </IconButton>
-            <IconButton size="medium" sx={{ ml: 2 }} aria-haspopup="true">
-              <AccountCircleIcon fontSize="medium" />
-            </IconButton>
+            <IconProfile />
             <Cart />
           </Stack>
         </Grid>
@@ -60,12 +59,11 @@ const Wrap = styled(Box)({
   display: "flex",
   alignItems: "center",
   height: "90px",
-  boxShadow: "rgb(100 100 111 / 14%) 0px 5px 12px 0px;"
+  boxShadow: "rgb(100 100 111 / 14%) 0px 5px 12px 0px;",
 });
 const LinkTo = styled(Link)({
   textDecoration: "none",
-
-})
+});
 const Item = styled(MenuItem)({
   color: "#10111e;",
   fontWeight: "600",
