@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import RouterAdmin from "./admin";
+import RouterAdmin from "./routers";
 // import privateRouter from "./private";
 
 const Routers = () => {

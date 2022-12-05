@@ -28,7 +28,6 @@ export const createOrder = createAsyncThunk(
   "order/createOrder",
   async (payload: FormOrder, action) => {
     const res = await addOrder(payload);
-    console.log(res);
     return payload;
   }
 );

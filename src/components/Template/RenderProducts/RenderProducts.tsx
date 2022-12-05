@@ -1,5 +1,6 @@
+import { Refresh } from "@mui/icons-material";
 import { Box, Grid, Pagination, Stack } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getProduct } from "../../../services/productService/ProductService";
 import LocalStorage from "../../../utils/LocalStorage";
@@ -11,20 +12,29 @@ type TypeCart = {
 };
 type TypeProps = {
   xs: number;
+  category?: string;
+  search?: string;
 };
-const RenderProducts = ({ xs }: TypeProps) => {
+const RenderProducts = ({ xs, category, search }: TypeProps) => {
+  const [nextPage, setNextPage] = useState(1);
   const [cart, setCart] = useState<TypeCart[]>(
     () => LocalStorage.get("cart") || []
   );
-  const { isLoading, error, data, refetch } = useQuery(
-    "repoData",
-    () => getProduct(),
-    {
-      staleTime: 6000,
-    }
+  const handleChangePage = (e: React.ChangeEvent<unknown>, page: number) => {
+    console.log(page);
+    setNextPage(page);
+    console.log(nextPage);
+  };
+  const { isLoading, error, data, refetch } = useQuery("products", () =>
+    getProduct({ limit: 4, page: nextPage, category, search })
   );
+
+  useEffect(() => {
+    refetch();
+  }, [nextPage, category, search]);
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: </p>;
+
   return (
     <>
       <Grid container spacing={4} width="100%">
@@ -44,11 +54,17 @@ const RenderProducts = ({ xs }: TypeProps) => {
             );
           })}
       </Grid>
-     <Box display="flex" justifyContent="center" my={5}>
+      <Box display="flex" justifyContent="center" my={5}>
         <Stack spacing={2}>
-          <Pagination count={10}   variant="outlined" color="primary"/>
+          <Pagination
+            page={nextPage}
+            count={data?.totalPage}
+            onChange={handleChangePage}
+            variant="outlined"
+            color="primary"
+          />
         </Stack>
-     </Box>
+      </Box>
     </>
   );
 };

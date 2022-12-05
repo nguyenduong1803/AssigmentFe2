@@ -14,15 +14,29 @@ import Check from "@mui/icons-material/Check";
 import { useQuery } from "react-query";
 import { getCategory } from "../../../../services/categoryService/CategoryService";
 import { ICategory } from "../../../../Types/Interface/Category";
-type Props = {};
+
+type Props = {
+  search: string;
+  setCategory: Dispatch<SetStateAction<string>>;
+  setSearch: Dispatch<SetStateAction<string>>;
+};
 
 const FilterProduct = (props: Props) => {
+  const { setSearch, setCategory, search } = props;
   const [check, setCheck] = useState(0);
-  const [keySearch, setKeySearch] = useState("");
+  
   const { data } = useQuery("categories", () => getCategory());
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setKeySearch(e.target.value);
+    setSearch(e.target.value);
+  };
+  const handleSetCheck = (index: number) => {
+    setCheck(index + 1);
+    if (index === -1) {
+      setCategory("");
+      return;
+    }
+    setCategory(data.data[index].categoryName);
   };
   const handleClick = () => {};
   return (
@@ -31,7 +45,7 @@ const FilterProduct = (props: Props) => {
         Search By
       </Typography>
       <Box position="relative">
-        <InputText value={keySearch} onChange={handleSearch} type="text" />
+        <InputText value={search} onChange={handleSearch} type="text" />
         <Search>
           <Fab size="small" color="success" aria-label="add">
             <SearchIcon />
@@ -42,13 +56,20 @@ const FilterProduct = (props: Props) => {
         <Typography py={2} textAlign="center">
           Category
         </Typography>
-        <ItemCategory index={0} name="All" setCheck={setCheck} check={check} id=""/>
+        <ItemCategory
+          index={0}
+          name="All"
+          setCheck={() => handleSetCheck(-1)}
+          check={check}
+          id=""
+        />
         {data &&
           data.data.map((item: ICategory, index: number) => {
             return (
               <ItemCategory
-                setCheck={setCheck}
+                setCheck={() => handleSetCheck(index)}
                 check={check}
+                key={item._id}
                 name={item.categoryName}
                 index={index + 1}
                 id={item._id}
@@ -111,7 +132,6 @@ interface ItemCategory {
 }
 const ItemCategory = ({ name, index, setCheck, check, id }: ItemCategory) => {
   const handleCheck = () => {
-    console.log(id);
     setCheck(index);
   };
   return (

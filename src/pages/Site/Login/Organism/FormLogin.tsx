@@ -3,7 +3,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../context/Auth";
 
 import ToastMess from "../../../../components/Atom/ToastMess/ToastMess";
@@ -15,17 +15,17 @@ import BaseFormLogin from "../Molecule/BaseFormLogin";
 import { login } from "services/UserService/Auth";
 import { UserLogin } from "Types/Interface/User";
 
-type Props = {};
 type FormData = {
   emai: string;
   password: string;
 };
 const provider = new GoogleAuthProvider();
-const FormLogin = (props: Props) => {
+const FormLogin = () => {
   const navigate = useNavigate();
   const authen = useContext(AuthContext);
   const [openToast, setOpenToast] = React.useState<boolean>(false);
-  //
+
+  // hanlde login account registed
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationLogin),
@@ -33,21 +33,23 @@ const FormLogin = (props: Props) => {
   });
   const onSubmit = async (data: any) => {
     const { forgotpassword, ...body } = data;
-    const res = await login(body)
+    LocalStorage.remove("accessToken");
+    const res = await login(body);
     if (!res) {
       setOpenToast(true);
       return;
     }
-    console.log(res.user)
-    const newUser:UserLogin={
+    const newUser: UserLogin = {
       fullname: res.user.fullname,
       email: res.user.email,
       isAdmin: res.user.isAdmin,
       updatedAt: res.user.updatedAt,
       phone: res.user.phone,
       _id: res.user._id,
-    }
-    authen?.setUser(newUser)
+    };
+    authen?.setUser(newUser);
+    LocalStorage.set("accessToken", res.token);
+    LocalStorage.set("typeLogin", "registed");
     console.log(res);
     if (res.user) {
       navigate("/");
@@ -57,11 +59,23 @@ const FormLogin = (props: Props) => {
   //   handle login google
   const handleLoginGoogle = async () => {
     const res = await signInWithPopup(auth, provider);
+    if (!res) {
+      setOpenToast(true);
+      return;
+    }
     const idToken = await res.user.getIdToken();
-    console.log(res);
     LocalStorage.set("accessToken", idToken);
     LocalStorage.set("typeLogin", "google");
     if (idToken) {
+      const newUser: UserLogin = {
+        fullname: res.user.displayName || "",
+        email: res.user.email || "",
+        isAdmin: false,
+        updatedAt: "",
+        phone: "",
+        _id: res.user.uid || "",
+      };
+      authen?.setUser(newUser);
       navigate("/");
     }
   };

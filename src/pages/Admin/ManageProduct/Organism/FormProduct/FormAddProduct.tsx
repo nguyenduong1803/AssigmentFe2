@@ -27,11 +27,9 @@ const FormAddProduct = (props: Props) => {
     defaultValues: validationProduct.getDefault(),
   });
   const onSubmit = async (data: FormData) => {
-    console.log(data.file);
     const base64 = await getBase64(data.file[0])
     const newData = {...data,file:base64}
     const res = await addProduct(newData);
-    console.log(res);
   };
   const options = {
     fakeOptions,

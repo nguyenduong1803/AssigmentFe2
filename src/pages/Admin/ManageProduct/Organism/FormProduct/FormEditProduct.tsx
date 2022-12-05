@@ -46,7 +46,7 @@ const FormEditProduct = (props: any) => {
   useEffect(() => {
     if (!id) return;
     const fethData = async () => {
-      const res = await getProductById(id);
+      const res = await getProductById({listId:id});
       setData(res.data);
     };
     fethData();

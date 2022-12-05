@@ -7,7 +7,7 @@ export interface IProduct {
   quantity: number;
   timeCreate: string;
   status: string;
-  image: string[];
+  images: string[];
   comment: string[];
   createdAt: string;
   updatedAt: string;

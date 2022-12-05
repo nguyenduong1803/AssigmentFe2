@@ -11,12 +11,12 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <WrapQuery>
-          <Auth>
+        <Auth>
+          <WrapQuery>
             <Routers />
             <ScrollToTop />
-          </Auth>
-        </WrapQuery>
+          </WrapQuery>
+        </Auth>
       </BrowserRouter>
     </Provider>
   );
