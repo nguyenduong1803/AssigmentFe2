@@ -22,7 +22,6 @@ const RenderCart = () => {
       staleTime: 3000,
     }
   );
-  console.log(data);
   return (
     <Stack spacing={1}>
       {data &&

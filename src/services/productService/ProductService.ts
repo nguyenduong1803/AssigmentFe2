@@ -24,7 +24,6 @@ interface IId {
 const getProductById = async (listId: IId) => {
   try {
     const res = await HttpClient.get(`productById/`, { params: listId });
-    console.log(res)
     return res;
   } catch (error) {
     console.log(error);
