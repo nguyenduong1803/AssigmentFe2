@@ -14,10 +14,6 @@ type FormData = {
   categoryName: string ;
 };
 
-const fakeUser = {
-  _id: "ầds",
-  categoryName: "categoryName",
-};
 const FormEditCategory = () => {
   const [data, setData] = useState<FormData>();
   const { id } = useParams();
@@ -29,7 +25,7 @@ const FormEditCategory = () => {
   // submit form
   const onSubmit = async (data: FormData) => {
     const { categoryName } = data;
-    const res = await updateCategory(id,{categoryName})
+    await updateCategory(id,{categoryName})
   };
   const options = {
     form,
@@ -39,7 +35,7 @@ const FormEditCategory = () => {
   useEffect(() => {
     if (!id) return;
     const fethData = async () => {
-      const res = await getCategoryById(id);
+    await getCategoryById(id);
     };
     fethData();
   }, [id]);

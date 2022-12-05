@@ -26,7 +26,7 @@ const Auth = (props: TypeProps) => {
   useEffect(() => {
     if (type) {
       (async () => {
-        const res = await verifyToken(type);
+        const res = await verifyToken({type});
         const user = res?.data;
         const newUser: UserLogin = {
           fullname: user.fullname,
