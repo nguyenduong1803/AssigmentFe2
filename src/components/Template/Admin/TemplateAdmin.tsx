@@ -18,6 +18,8 @@ import { secondaryListItems, ListNavbar } from "./ListItems";
 import { ReactNode } from "react";
 import { Avatar } from "@mui/material";
 import defaultImage from "../../../assets/illustrations/avatar_default.jpg";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "context/Auth";
 const drawerWidth: number = 240;
 
 interface AppBarProps extends MuiAppBarProps {
@@ -76,10 +78,12 @@ const mdTheme = createTheme();
 
 function TemplateAdmin(props: TypeProps) {
   const [open, setOpen] = React.useState(true);
+  const authen = React.useContext(AuthContext);
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
+  console.log(authen?.user?.isAdmin)
+  if (!authen?.user?.isAdmin) return <Navigate to="/login"></Navigate>;
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>

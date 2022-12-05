@@ -1,12 +1,12 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Grid, IconButton, MenuItem, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Cart from "../Cart/Cart";
 import IconProfile from "components/Atom/IconProfile/IconProfile";
+
 const Header = () => {
   return (
     <Wrap>

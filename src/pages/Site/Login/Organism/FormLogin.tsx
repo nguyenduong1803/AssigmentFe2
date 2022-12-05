@@ -1,18 +1,19 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../../context/Auth";
+
 import ToastMess from "../../../../components/Atom/ToastMess/ToastMess";
-import { actionLogin } from "../../../../redux/sliceReducer/AuthSlice";
 import { AppDispatch } from "../../../../redux/store";
 import { auth } from "../../../../services/firebase/firebase";
-import loginGoogle from "../../../../services/firebase/LoginGoogle";
-import { login, verifyToken } from "../../../../services/UserService/Auth";
 import LocalStorage from "../../../../utils/LocalStorage";
 import { validationLogin } from "../../../../utils/Validate/FormUser";
 import BaseFormLogin from "../Molecule/BaseFormLogin";
+import { login } from "services/UserService/Auth";
+import { UserLogin } from "Types/Interface/User";
 
 type Props = {};
 type FormData = {
@@ -22,7 +23,7 @@ type FormData = {
 const provider = new GoogleAuthProvider();
 const FormLogin = (props: Props) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const authen = useContext(AuthContext);
   const [openToast, setOpenToast] = React.useState<boolean>(false);
   //
   const form = useForm<FormData>({
@@ -31,20 +32,33 @@ const FormLogin = (props: Props) => {
     defaultValues: validationLogin.getDefault(),
   });
   const onSubmit = async (data: any) => {
-    const { forgotpassword,...body } = data;
-    // const body: FormData = data.body;
-    const res =await dispatch(actionLogin(body));
+    const { forgotpassword, ...body } = data;
+    const res = await login(body)
     if (!res) {
       setOpenToast(true);
       return;
     }
-    // const res = await verifyToken("register")
-    console.log(res)
+    console.log(res.user)
+    const newUser:UserLogin={
+      fullname: res.user.fullname,
+      email: res.user.email,
+      isAdmin: res.user.isAdmin,
+      updatedAt: res.user.updatedAt,
+      phone: res.user.phone,
+      _id: res.user._id,
+    }
+    authen?.setUser(newUser)
+    console.log(res);
+    if (res.user) {
+      navigate("/");
+    }
   };
+
   //   handle login google
   const handleLoginGoogle = async () => {
     const res = await signInWithPopup(auth, provider);
     const idToken = await res.user.getIdToken();
+    console.log(res);
     LocalStorage.set("accessToken", idToken);
     LocalStorage.set("typeLogin", "google");
     if (idToken) {
