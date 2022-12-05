@@ -13,7 +13,7 @@ export default function TableProduct() {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const { isLoading, error, data, refetch } = useQuery(
     "repoData",
-    () => getProduct(),
+    () => getProduct({limit:8}),
     {
       staleTime: 4000,
     }

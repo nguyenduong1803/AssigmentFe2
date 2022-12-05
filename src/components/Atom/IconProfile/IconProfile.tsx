@@ -12,6 +12,7 @@ import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import { Stack } from "@mui/system";
 import useAuth from "hooks/useAuth";
+import LocalStorage from "utils/LocalStorage";
 
 export default function IconProfile() {
   const auth = useAuth();
@@ -22,6 +23,11 @@ export default function IconProfile() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const hanldeLogout = () => {
+    LocalStorage.remove("accessToken");
+    LocalStorage.remove("typeLogin");
+    auth?.setUser(undefined)
   };
   return (
     <React.Fragment>
@@ -86,15 +92,13 @@ export default function IconProfile() {
             style={{ textDecoration: "none", color: "#353535" }}
             to="/login"
           >
-            {" "}
             <Stack direction="row">
-              {" "}
               <Avatar /> Login
             </Stack>
           </Link>
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={hanldeLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

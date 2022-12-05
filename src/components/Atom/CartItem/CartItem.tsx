@@ -1,9 +1,11 @@
-import { Box, Stack, Typography } from "@mui/material";
-import React from "react";
+import { Stack, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-type Props = {};
-
+import { IProduct } from "Types/Interface/Product";
+interface Props extends IProduct {
+  quantity: number;
+}
 const CartItem = (props: Props) => {
+  const { images, price, name, quantity } = props;
   return (
     <div>
       <Stack
@@ -15,18 +17,12 @@ const CartItem = (props: Props) => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Image
-          src="https://cdn.tgdd.vn/2020/11/content/4-800x500-5.jpg"
-          alt=""
-        />
+        <Image src={images[0]} alt="" />
         <Typography flex={1} variant="subtitle2">
-          Beef Steak
+          {name}
         </Typography>
-        <Box flex={1}>
-          <InputNumber type="number" />
-        </Box>
-        <Typography variant="subtitle2">x2</Typography>
-        <Typography variant="subtitle2">$100</Typography>
+        <Typography variant="subtitle2">x{quantity}</Typography>
+        <Typography variant="subtitle2">${price}</Typography>
       </Stack>
     </div>
   );
@@ -36,7 +32,5 @@ const Image = styled("img")({
   height: "80px",
   objectFit: "cover",
 });
-const InputNumber = styled("input")({
-width:"50px"
-})
+
 export default CartItem;
