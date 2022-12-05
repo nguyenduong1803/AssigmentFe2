@@ -1,7 +1,7 @@
 import { FormOrder } from "./../../Types/Interface/Order";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addOrder } from "../../services/orderService/OrderService";
-import { AppDispatch } from "../store";
+import LocalStorage from "utils/LocalStorage";
 
 const OrderSlice = createSlice({
   name: "order",
@@ -28,6 +28,9 @@ export const createOrder = createAsyncThunk(
   "order/createOrder",
   async (payload: FormOrder, action) => {
     const res = await addOrder(payload);
+    if(res){
+      LocalStorage.remove("cart")
+    }
     return payload;
   }
 );

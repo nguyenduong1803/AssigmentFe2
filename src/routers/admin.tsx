@@ -35,7 +35,7 @@ const routes: RouteObject[] = [
     children:[
       {
         index:true,
-        element: ( <TemplateAdmin> <h2>Dashboard</h2></TemplateAdmin> )
+        element: ( <TemplateAdmin> <Home /></TemplateAdmin> )
       },
       {
         path: "about",

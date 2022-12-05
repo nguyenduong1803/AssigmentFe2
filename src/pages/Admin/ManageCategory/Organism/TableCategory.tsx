@@ -12,7 +12,7 @@ import {
 } from "../../../../services/categoryService/CategoryService";
 import { ICategory } from "../../../../Types/Interface/Category";
 
-export default function TableCategory(props: any) {
+export default function TableCategory() {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const { isLoading, error, data, refetch } = useQuery(

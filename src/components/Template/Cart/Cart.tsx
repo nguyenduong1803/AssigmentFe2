@@ -4,11 +4,16 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ButtonLink from "../../Atom/Button/ButtonLink";
 import RenderCart from "../RenderCart/RenderCart";
 import LocalStorage from "utils/LocalStorage";
+import { selectCart } from "redux/selector";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "redux/store";
 
 type Props = {};
 
 const Cart = (props: Props) => {
   const [open, setOpen] = useState(false);
+  const select = useSelector(selectCart)
+  console.log(select)
   let cart = LocalStorage.get("cart")?.length || 0;
   return (
     <>

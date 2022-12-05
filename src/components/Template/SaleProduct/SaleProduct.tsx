@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
-import React from "react";
 import { styled } from "@mui/material/styles";
-import { hover } from "@testing-library/user-event/dist/hover";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import "react-lazy-load-image-component/src/effects/blur.css";
 type Props = {};
 
 const SaleProduct = (props: Props) => {
@@ -12,6 +12,8 @@ const SaleProduct = (props: Props) => {
          <WrapImage>
               <Image
                 width="100%"
+                style={{transition:"0.4s"}}
+                effect="blur"
                 src="https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/banner1.jpg"
                 alt="asdf"
               />
@@ -21,6 +23,8 @@ const SaleProduct = (props: Props) => {
           <WrapImage>
             <Image
               width="100%"
+              style={{transition:"0.4s"}}
+              effect="blur"
               src="	https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/banner3.jpg"
               alt="adsf"
             />
@@ -30,6 +34,8 @@ const SaleProduct = (props: Props) => {
          <WrapImage>
               <Image
                 width="100%"
+                style={{transition:"0.4s"}}
+                effect="blur"
                 src="https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/banner2.jpg"
                 alt="asdf"
               />
@@ -39,7 +45,7 @@ const SaleProduct = (props: Props) => {
     </>
   );
 };
-const Image = styled("img")({
+const Image = styled(LazyLoadImage)({
   transition: "1.2s",
   "&:hover": {
     transform: "scale(1.2)",

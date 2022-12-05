@@ -1,7 +1,7 @@
-import { Refresh } from "@mui/icons-material";
 import { Box, Grid, Pagination, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { IProduct } from "Types/Interface/Product";
 import { getProduct } from "../../../services/productService/ProductService";
 import LocalStorage from "../../../utils/LocalStorage";
 import Product from "../../Atom/Product/Product";
@@ -26,20 +26,20 @@ const RenderProducts = ({ xs, category, search }: TypeProps) => {
     console.log(nextPage);
   };
   const { isLoading, error, data, refetch } = useQuery("products", () =>
-    getProduct({ limit: 4, page: nextPage, category, search })
+    getProduct({ limit: 8, page: nextPage, category, search })
   );
 
   useEffect(() => {
     refetch();
-  }, [nextPage, category, search]);
+  }, [nextPage, category, search, refetch]);
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: </p>;
 
   return (
-    <>
+    <Box marginRight="-30px" >
       <Grid container spacing={4} width="100%">
         {data &&
-          data.data.map((item: any) => {
+          data.data.map((item: IProduct) => {
             return (
               <Grid item xs={xs} key={item._id}>
                 <Product
@@ -65,7 +65,7 @@ const RenderProducts = ({ xs, category, search }: TypeProps) => {
           />
         </Stack>
       </Box>
-    </>
+    </Box>
   );
 };
 

@@ -1,13 +1,7 @@
-import {
-  createContext,
-  useState,
-  ReactElement,
-  useEffect,
-} from "react";
+import { createContext, useState, ReactElement, useEffect } from "react";
 import { verifyToken } from "../services/UserService/Auth";
 import LocalStorage from "utils/LocalStorage";
 import { TypeAuth, UserLogin } from "Types/Interface/User";
-
 
 type TypeProps = {
   children: ReactElement;
@@ -16,9 +10,15 @@ export const AuthContext = createContext<TypeAuth | undefined>(undefined);
 
 const Auth = (props: TypeProps) => {
   const { children } = props;
-  const [user, setUser] = useState<UserLogin | undefined>(undefined);
+  const [user, setUser] = useState<UserLogin | undefined>({
+    fullname: "",
+    email: "",
+    isAdmin: false,
+    updatedAt: "",
+    phone: "",
+    _id: "",
+  });
   const type = LocalStorage.get("typeLogin");
-
   const newValue: TypeAuth = {
     user,
     setUser,
@@ -26,7 +26,7 @@ const Auth = (props: TypeProps) => {
   useEffect(() => {
     if (type) {
       (async () => {
-        const res = await verifyToken({type});
+        const res = await verifyToken({ type });
         const user = res?.data;
         const newUser: UserLogin = {
           fullname: user.fullname,
@@ -39,7 +39,7 @@ const Auth = (props: TypeProps) => {
         setUser(newUser);
       })();
     }
-  },[]);
+  }, [type]);
   return (
     <AuthContext.Provider value={newValue}>{children}</AuthContext.Provider>
   );

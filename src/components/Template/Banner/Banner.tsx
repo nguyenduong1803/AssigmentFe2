@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { styled } from "@mui/material/styles";
 type Props = {};
 
@@ -7,26 +8,33 @@ const Banner = (props: Props) => {
   return (
     <div>
       <Box position="relative">
-        <img
+        <LazyLoadImage
+          effect="blur"
           width="100%"
           src="https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/slide1.jpg"
           alt=""
         />
         <ChairItem>
-          <img
+          <LazyLoadImage
+            effect="blur"
             src="https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/shape1.png"
             alt=""
           />
         </ChairItem>
         <ChairItem2>
-          <img
+          <LazyLoadImage
+            effect="blur"
             src="https://shtheme.com/demosd/vura/wp-content/uploads/2019/06/shape2.png"
             alt=""
           />
         </ChairItem2>
         <WrapTitle>
-          <Typography fontWeight={500} variant="h1"> Synnes Dining </Typography>
-          <Typography variant="h2" mt={5}>  Chair Upholstered</Typography>
+          <Typography fontWeight={500} variant="h1">
+            Synnes Dining
+          </Typography>
+          <Typography variant="h2" mt={5}>
+            Chair Upholstered
+          </Typography>
         </WrapTitle>
       </Box>
     </div>

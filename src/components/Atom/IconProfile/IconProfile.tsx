@@ -27,7 +27,7 @@ export default function IconProfile() {
   const hanldeLogout = () => {
     LocalStorage.remove("accessToken");
     LocalStorage.remove("typeLogin");
-    auth?.setUser(undefined)
+    auth?.setUser(undefined);
   };
   return (
     <React.Fragment>
@@ -87,16 +87,24 @@ export default function IconProfile() {
         <MenuItem>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem>
+        {auth?.user?.isAdmin && (
           <Link
             style={{ textDecoration: "none", color: "#353535" }}
-            to="/login"
+            to="/manage"
           >
+            <MenuItem>
+              <Avatar /> manage
+            </MenuItem>
+          </Link>
+        )}
+
+        <Link style={{ textDecoration: "none", color: "#353535" }} to="/login">
+          <MenuItem>
             <Stack direction="row">
               <Avatar /> Login
             </Stack>
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
         <Divider />
         <MenuItem onClick={hanldeLogout}>
           <ListItemIcon>

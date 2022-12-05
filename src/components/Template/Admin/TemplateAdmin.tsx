@@ -18,7 +18,7 @@ import { secondaryListItems, ListNavbar } from "./ListItems";
 import { ReactNode } from "react";
 import { Avatar } from "@mui/material";
 import defaultImage from "../../../assets/illustrations/avatar_default.jpg";
-import { Navigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import useAuth from "hooks/useAuth";
 const drawerWidth: number = 240;
 
@@ -78,11 +78,21 @@ const mdTheme = createTheme();
 
 function TemplateAdmin(props: TypeProps) {
   const [open, setOpen] = React.useState(true);
-  const authen = useAuth()
+  const navigate = useNavigate();
+  const auth = useAuth();
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  if (!authen?.user?.isAdmin) return <Navigate to="/login"></Navigate>;
+  console.log(auth?.user?.isAdmin);
+  // if (!auth?.user?.isAdmin ) {
+  //   console.log(auth?.user?.isAdmin);
+  //   return <Navigate to="/login" />;
+  // }
+  React.useEffect(() => {
+    if (!auth?.user?.isAdmin) {
+      navigate("/login");
+    }
+  });
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
