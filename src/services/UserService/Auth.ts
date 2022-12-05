@@ -1,5 +1,5 @@
+import { CommonResponse } from "Types/Interface/Common";
 import HttpClient from "../../utils/HtppClient";
-import LocalStorage from "../../utils/LocalStorage";
 
 // login
 const login = async (param: any) => {
@@ -22,20 +22,16 @@ const logout = async (id: string | undefined) => {
   }
 };
 
-interface IAuth {
-  fullname: string;
-  email: string;
-  isAdmin: boolean;
-  updatedAt: string;
-  password: string;
-  _id: string;
+interface TypeVerifyToken {
+  type: string;
 }
-const verifyToken = async (type: any | undefined) => {
+const verifyToken = async (params: TypeVerifyToken) => {
   //
   try {
-    const res = await HttpClient.post(`auths/verifyToken`, {
-      body: type,
-    });
+    const res = await HttpClient.post<typeof params, CommonResponse>(
+      `auths/verifyToken`,
+      { type:params.type }
+    );
     return res;
   } catch (error) {
     console.log(error);
