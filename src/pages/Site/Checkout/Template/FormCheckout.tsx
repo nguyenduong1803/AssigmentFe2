@@ -32,7 +32,6 @@ const FormAddCategory = () => {
     // createOrder
     dispatch(createOrder(datas));
     
-    console.log(data);
   };
   const options = {
     form,

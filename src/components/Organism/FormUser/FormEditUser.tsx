@@ -31,7 +31,6 @@ const FormEditUser = (props: Props) => {
     defaultValues: validationProduct.getDefault(),
   });
   const onSubmit = async (data: any) => {
-    console.log(data);
   };
   const options={
     fakeOptions,

@@ -40,8 +40,6 @@ const FormEditCategory = () => {
     if (!id) return;
     const fethData = async () => {
       const res = await getCategoryById(id);
-      console.log(res);
-      setData(res.data);
     };
     fethData();
   }, [id]);

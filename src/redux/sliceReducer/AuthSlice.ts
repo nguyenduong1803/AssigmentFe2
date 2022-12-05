@@ -28,7 +28,6 @@ export const parseToken = createAsyncThunk(
   "auth/veifyToken",
   async (payload: string, action) => {
     const res = await verifyToken({ type: payload });
-    console.log(res);
     return res;
   }
 );
@@ -42,7 +41,6 @@ export const actionLogin = createAsyncThunk(
   async (payload: FormData, action) => {
     LocalStorage.remove("accessToken",)
     const res = await login(payload);
-    console.log(res);
     
     if (!res) {
       return;

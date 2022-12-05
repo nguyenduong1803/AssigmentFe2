@@ -15,7 +15,6 @@ import BaseFormLogin from "../Molecule/BaseFormLogin";
 import { login } from "services/UserService/Auth";
 import { UserLogin } from "Types/Interface/User";
 
-
 type FormData = {
   emai: string;
   password: string;
@@ -25,7 +24,8 @@ const FormLogin = () => {
   const navigate = useNavigate();
   const authen = useContext(AuthContext);
   const [openToast, setOpenToast] = React.useState<boolean>(false);
-  //
+
+  // hanlde login account registed
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationLogin),
@@ -33,7 +33,7 @@ const FormLogin = () => {
   });
   const onSubmit = async (data: any) => {
     const { forgotpassword, ...body } = data;
-    LocalStorage.remove("accessToken")
+    LocalStorage.remove("accessToken");
     const res = await login(body);
     if (!res) {
       setOpenToast(true);
@@ -59,12 +59,23 @@ const FormLogin = () => {
   //   handle login google
   const handleLoginGoogle = async () => {
     const res = await signInWithPopup(auth, provider);
+    if (!res) {
+      setOpenToast(true);
+      return;
+    }
     const idToken = await res.user.getIdToken();
-    console.log(res);
-    console.log(idToken);
     LocalStorage.set("accessToken", idToken);
     LocalStorage.set("typeLogin", "google");
     if (idToken) {
+      const newUser: UserLogin = {
+        fullname: res.user.displayName || "",
+        email: res.user.email || "",
+        isAdmin: false,
+        updatedAt: "",
+        phone: "",
+        _id: res.user.uid || "",
+      };
+      authen?.setUser(newUser);
       navigate("/");
     }
   };

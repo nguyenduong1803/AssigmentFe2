@@ -39,7 +39,7 @@ export default function IconProfile() {
           </IconButton>
         </Tooltip>
         {auth && (
-          <Typography variant="subtitle1"> {auth.user?.fullname}</Typography>
+          <Typography variant="subtitle1"> {auth?.user?.fullname}</Typography>
         )}
       </Box>
       <Menu

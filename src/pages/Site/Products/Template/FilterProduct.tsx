@@ -111,7 +111,6 @@ interface ItemCategory {
 }
 const ItemCategory = ({ name, index, setCheck, check, id }: ItemCategory) => {
   const handleCheck = () => {
-    console.log(id);
     setCheck(index);
   };
   return (
