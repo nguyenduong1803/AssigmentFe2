@@ -6,3 +6,11 @@ export interface IUser{
     createdAt:string;
     updatedAt:string;
 }
+export interface UserLogin {
+    fullname: string;
+    email: string;
+    isAdmin: boolean;
+    updatedAt: string;
+    phone: string;
+    _id: string;
+  }

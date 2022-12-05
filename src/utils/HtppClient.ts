@@ -9,85 +9,115 @@ import LocalStorage from "./LocalStorage";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-const headers: AxiosRequestConfig["headers"] = {
-  "Content-Type": "application/json",
+const headers: AxiosRequestConfig['headers'] = {
+  'Content-Type': 'application/json',
 };
+
 class Axios {
   private instance: AxiosInstance;
-  private interceptors: number | null = null;
+  private interceptor: number | null = null;
+
   constructor() {
     const instance = axios.create({
       baseURL,
       headers,
     });
-    // request interceptor
+
+    // Request interceptor
     instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        const accessToken = LocalStorage.get("accessToken");
-        console.log(config);
+        const accessToken = LocalStorage.get('accessToken');
         if (config.headers) {
-          if (accessToken ) {
-            console.log(config.url !== "auths/login");
-            config.headers.Authorization = "Bearer " + accessToken;
+          if (accessToken) {
+            config.headers.Authorization = `Bearer ${accessToken}`;
           } else {
             delete config.headers.Authorization;
           }
         }
         return config;
       },
-      (error: AxiosError) => Promise.reject(error)
+      (error) => Promise.reject(error)
     );
 
     // Response interceptor
-    const interceptors = instance.interceptors.response.use(
+    const interceptor = instance.interceptors.response.use(
       (response: AxiosResponse) => response.data,
       (error: AxiosError) => Promise.reject(error)
     );
+
+    this.interceptor = interceptor;
     this.instance = instance;
-    this.interceptors = interceptors;
   }
+
   public get Instance(): AxiosInstance {
     return this.instance;
   }
-  private useInterceptors() {
-    if (this.interceptors === null) {
-      const interceptors = this.instance.interceptors.response.use(
+
+  private useInterceptor() {
+    if (this.interceptor === null) {
+      const interceptor = this.instance.interceptors.response.use(
         (response: AxiosResponse) => response.data,
         (error: AxiosError) => Promise.reject(error)
       );
-      this.interceptors = interceptors;
+      this.interceptor = interceptor;
     }
   }
+
+  private ejectInterceptor() {
+    if (this.interceptor !== null) {
+      this.instance.interceptors.response.eject(this.interceptor);
+      this.interceptor = null;
+    }
+  }
+
+  // Create
+  public post<T = any, R = T>(
+    url: string,
+    data?: T,
+    config?: AxiosRequestConfig
+  ): Promise<R> {
+    this.useInterceptor();
+    return this.Instance.post<T, R>(url, data, config);
+  }
+
+  // Read
   public get<T = any, R = T>(
     url: string,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    this.useInterceptors();
+    this.useInterceptor();
     return this.Instance.get<T, R>(url, config);
   }
-  public post<T = any, R = T>(
-    url: string,
-    data: T,
-    config?: AxiosRequestConfig
-  ): Promise<R> {
-    this.useInterceptors();
-    return this.Instance.post<T, R>(url, data, config);
-  }
+
+  // Update
   public put<T = any, R = T>(
     url: string,
-    data: T,
+    data?: T,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    this.useInterceptors();
+    this.useInterceptor();
     return this.Instance.put<T, R>(url, data, config);
   }
+
+  // Delete
   public delete<T = any, R = T>(
     url: string,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    this.useInterceptors();
+    this.useInterceptor();
     return this.Instance.delete<T, R>(url, config);
   }
+
+  // Post with full response
+  public pull<T = any, R = T>(
+    url: string,
+    data?: T,
+    config?: AxiosRequestConfig
+  ): Promise<R> {
+    this.ejectInterceptor();
+    return this.Instance.post<T, R>(url, data, config);
+  }
 }
+
 const HttpClient = new Axios();
 export default HttpClient;

@@ -40,8 +40,10 @@ type FormData = {
 export const actionLogin = createAsyncThunk(
   "auth/veifyToken",
   async (payload: FormData, action) => {
+    LocalStorage.remove("accessToken",)
     const res = await login(payload);
     console.log(res);
+    
     if (!res) {
       return;
     }
