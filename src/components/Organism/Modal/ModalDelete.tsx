@@ -16,6 +16,7 @@ export default function ModalDelete({ open, setOpen, id,onIsUpdate,isUpdate ,rem
   const { isSuccess,isError } = useQuery(["delete"],()=> removeProduct(id),{enabled:isUpdate})
 
   const handleDelete = () => {
+    console.log("delete")
     onIsUpdate(true)
     setOpen(false);
   };

@@ -1,10 +1,13 @@
 import { Box, IconButton, Stack, Typography } from "@mui/material";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LocalStorage from "../../../utils/LocalStorage";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import "react-lazy-load-image-component/src/effects/blur.css";
 import ToastMess from "../ToastMess/ToastMess";
+import LocalStorage from "utils/LocalStorage";
+
 type Props = {
   id: string;
   image: string;
@@ -20,7 +23,7 @@ type TypeCart = {
 
 const Product = (props: Props) => {
   const [openToast, setOpenToast] = React.useState<boolean>(false);
-
+  
   const { image, name, price, discount, id, setCart } = props;
 
   const handleAddCart = (productId: string) => {
@@ -44,10 +47,12 @@ const Product = (props: Props) => {
   return (
     <Box>
       <BoxImage position="relative">
-        <img
+        <LazyLoadImage
           style={{ width: "100%", height: "300px", objectFit: "cover" }}
+          width="100%"
           src={image}
-          alt=""
+          effect="blur"
+          alt="image"
         />
         <Sale>Sale</Sale>
         <WrapIcon className="productIcon">

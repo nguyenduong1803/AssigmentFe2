@@ -13,7 +13,7 @@ import {
   removeCategory,
 } from "../../../../services/categoryService/CategoryService";
 
-export default function TableOrder(props: any) {
+export default function TableOrder() {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const { isLoading, error, data, refetch } = useQuery(

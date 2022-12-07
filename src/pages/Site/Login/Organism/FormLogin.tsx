@@ -2,12 +2,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../context/Auth";
 
 import ToastMess from "../../../../components/Atom/ToastMess/ToastMess";
-import { AppDispatch } from "../../../../redux/store";
 import { auth } from "../../../../services/firebase/firebase";
 import LocalStorage from "../../../../utils/LocalStorage";
 import { validationLogin } from "../../../../utils/Validate/FormUser";

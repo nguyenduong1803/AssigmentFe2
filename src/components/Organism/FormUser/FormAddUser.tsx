@@ -24,7 +24,7 @@ const FormAddUser = (props: Props) => {
     resolver: yupResolver(validationProduct),
     defaultValues: validationProduct.getDefault(),
   });
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: FormData) => {
     console.log(data);
   };
   const options={

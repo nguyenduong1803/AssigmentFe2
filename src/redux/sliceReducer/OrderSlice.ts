@@ -1,7 +1,7 @@
 import { FormOrder } from "./../../Types/Interface/Order";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addOrder } from "../../services/orderService/OrderService";
-import { AppDispatch } from "../store";
+import LocalStorage from "utils/LocalStorage";
 
 const OrderSlice = createSlice({
   name: "order",
@@ -11,15 +11,17 @@ const OrderSlice = createSlice({
     phoneNumber: "",
     note: "",
     totalMoney: 0,
-    status: "idle",
+    loading: "idle",
+    orderStatus: false,
   },
   reducers: {},
   extraReducers: (builders) => {
-    builders.addCase(createOrder.pending, (state) => {
-      state.status = "loading";
+    builders.addCase(createOrder.pending, (state, action) => {
+      state.loading = "loading";
+      console.log(action.payload);
     });
     builders.addCase(createOrder.fulfilled, (state) => {
-      state.status = "idle";
+      state.loading = "idle";
     });
   },
 });
@@ -28,7 +30,14 @@ export const createOrder = createAsyncThunk(
   "order/createOrder",
   async (payload: FormOrder, action) => {
     const res = await addOrder(payload);
-    return payload;
+    if (!res) {
+      return { status: false };
+    }
+    if (res?.message === "thêm thành công") {
+      LocalStorage.remove("cart");
+      return { status: true };
+    }
+    return { status: false };
   }
 );
 
