@@ -11,15 +11,17 @@ const OrderSlice = createSlice({
     phoneNumber: "",
     note: "",
     totalMoney: 0,
-    status: "idle",
+    loading: "idle",
+    orderStatus: false,
   },
   reducers: {},
   extraReducers: (builders) => {
-    builders.addCase(createOrder.pending, (state) => {
-      state.status = "loading";
+    builders.addCase(createOrder.pending, (state, action) => {
+      state.loading = "loading";
+      console.log(action.payload);
     });
     builders.addCase(createOrder.fulfilled, (state) => {
-      state.status = "idle";
+      state.loading = "idle";
     });
   },
 });
@@ -28,10 +30,14 @@ export const createOrder = createAsyncThunk(
   "order/createOrder",
   async (payload: FormOrder, action) => {
     const res = await addOrder(payload);
-    if(res){
-      LocalStorage.remove("cart")
+    if (!res) {
+      return { status: false };
     }
-    return payload;
+    if (res?.message === "thêm thành công") {
+      LocalStorage.remove("cart");
+      return { status: true };
+    }
+    return { status: false };
   }
 );
 

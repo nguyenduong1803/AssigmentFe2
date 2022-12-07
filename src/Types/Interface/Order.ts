@@ -16,6 +16,7 @@ export interface ICart {
   quantity: number;
 }
 export type FormOrder ={
+  [x: string]: any;
   userId: string;
   address: string;
   phoneNumber: string;

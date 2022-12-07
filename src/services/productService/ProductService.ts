@@ -29,6 +29,17 @@ const getProductById = async (listId: IId) => {
     console.log(error);
   }
 };
+// get prodcut by id
+const getProductByIds = async (id: string | undefined) => {
+  if (id) {
+    try {
+      const res = await HttpClient.get(`productById/${id}`);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 // add product
 const addProduct = async (param: any) => {
   try {
@@ -61,4 +72,4 @@ const removeProduct = async (id: string | undefined) => {
     console.log(error);
   }
 };
-export { getProduct, getProductById, addProduct, updateProduct, removeProduct };
+export { getProduct, getProductById, addProduct, updateProduct, removeProduct ,getProductByIds};
