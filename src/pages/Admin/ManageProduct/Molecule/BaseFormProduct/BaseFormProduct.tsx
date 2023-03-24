@@ -11,6 +11,8 @@ import ControlTextField from "../../../../../components/Atom/Form/ControlTextFie
 import ControlSelect2 from "../../../../../components/Atom/Form/ControlSelect2";
 import Buttons from "../../../../../components/Atom/Button/Button";
 import { useEffect, useState } from "react";
+import { IProduct } from "Types/Interface/Product";
+import { getProduct } from "services/productService/ProductService";
 //
 const BaseFormProduct = (props: any) => {
   const { fakeOptions, fakeCategoey, form, onSubmit } = props;
@@ -21,17 +23,27 @@ const BaseFormProduct = (props: any) => {
     handleSubmit,
     register,
     watch,
+    data,
     formState: { errors },
   } = form;
-  const [file] = watch(["file"]);
+  const [file, named] = watch(["file", "name"]);
+
   useEffect(() => {
-    if (file&&file[0]) {
+    if (file && file[0]) {
       const readURL = (input: File) => {
         setUrlImage(URL.createObjectURL(input));
       };
-      readURL(file[0])
+      readURL(file[0]);
     }
-  }, [file]);
+    const subscription = watch((value: IProduct) => {
+      // console.log(value.name);
+    });
+    (async()=>{
+      const res = await getProduct({search: named})
+      console.log(res)
+    })()
+    return () => subscription.unsubscribe();
+  }, [file, named]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
@@ -104,7 +116,7 @@ const BaseFormProduct = (props: any) => {
               <input hidden {...register("file")} type="file" />
               <PhotoCamera />
             </IconButton>
-            {urlImage && <img width="150px" height="150px" src={urlImage}/>}
+            {urlImage && <img width="150px" height="150px" src={urlImage} />}
           </Stack>
           <FormHelperText sx={{ color: "#d32f2f" }} variant="outlined">
             {errors.file?.message && errors.file?.message}
