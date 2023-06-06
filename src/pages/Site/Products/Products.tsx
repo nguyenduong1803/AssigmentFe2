@@ -10,8 +10,6 @@ type Props = {};
 const Products = (props: Props) => {
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
-  console.log(category);
-  console.log(search);
   const debounceSearch = useDebounce(search, 500);
   return (
     <>

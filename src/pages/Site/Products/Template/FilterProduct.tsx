@@ -36,7 +36,7 @@ const FilterProduct = (props: Props) => {
       setCategory("");
       return;
     }
-    setCategory(data.data[index].categoryName);
+    setCategory(data.data[index]._id);
   };
   const handleClick = () => {};
   return (
@@ -44,9 +44,9 @@ const FilterProduct = (props: Props) => {
       <Typography variant="h5" py={2} textAlign="center">
         Search By
       </Typography>
-      <Box position="relative">
-        <InputText value={search} onChange={handleSearch} type="text" />
-        <Search>
+      <Box position="relative" height="40px">
+        <InputText width="100%" height="40px" sx={{paddingLeft:2}} value={search} onChange={handleSearch} type="text" />
+        <Search >
           <Fab size="small" color="success" aria-label="add">
             <SearchIcon />
           </Fab>
@@ -87,6 +87,7 @@ const FilterProduct = (props: Props) => {
             label="Best Seller"
             variant="outlined"
             onClick={handleClick}
+
           />
           <Chip
             sx={{ marinTop: "12px" }}
@@ -160,6 +161,6 @@ const InputText = styled("input")({
 const Search = styled(Box)({
   position: "absolute",
   right: "-6px",
-  top: "1px",
+  top: "0",
 });
 export default FilterProduct;

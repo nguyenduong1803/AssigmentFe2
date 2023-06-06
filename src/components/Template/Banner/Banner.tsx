@@ -7,7 +7,7 @@ type Props = {};
 const Banner = (props: Props) => {
   return (
     <div>
-      <Box position="relative">
+      <Box position="relative" minHeight="500px">
         <LazyLoadImage
           effect="blur"
           width="100%"

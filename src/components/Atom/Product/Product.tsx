@@ -44,6 +44,9 @@ const Product = (props: Props) => {
     });
     setOpenToast(true);
   };
+  const discountPrice = (price:number,discount:number) => {
+    return price * discount /100
+  }
   return (
     <Box>
       <BoxImage position="relative">
@@ -85,10 +88,10 @@ const Product = (props: Props) => {
           fontWeight={500}
           sx={{ textDecoration: "line-through" }}
         >
-          ${price}
+         {discount && discount >0 && `$${price}`} 
         </Typography>
         <Typography variant="subtitle1" fontWeight={700}>
-          ${discount}
+          ${discountPrice(price,discount||0)}
         </Typography>
       </Stack>
       <ToastMess

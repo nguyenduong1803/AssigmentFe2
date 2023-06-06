@@ -13,9 +13,11 @@ import Buttons from "../../../../../components/Atom/Button/Button";
 import { useEffect, useState } from "react";
 import { IProduct } from "Types/Interface/Product";
 import { getProduct } from "services/productService/ProductService";
+import { getCategory } from "services/categoryService/CategoryService";
 //
 const BaseFormProduct = (props: any) => {
-  const { fakeOptions, fakeCategoey, form, onSubmit } = props;
+  const [categories, setCategories] = useState([])
+  const { fakeOptions, form, onSubmit } = props;
   const [urlImage, setUrlImage] = useState<string>("");
 
   const {
@@ -33,7 +35,6 @@ const BaseFormProduct = (props: any) => {
       const readURL = (input: File) => {
         setUrlImage(URL.createObjectURL(input));
       };
-      readURL(file[0]);
     }
     const subscription = watch((value: IProduct) => {
       // console.log(value.name);
@@ -44,6 +45,14 @@ const BaseFormProduct = (props: any) => {
     })()
     return () => subscription.unsubscribe();
   }, [file, named]);
+  const fetchCategory = async()=>{
+    const res = await getCategory();
+    console.log(res)
+    setCategories(res.data)
+  }
+  useEffect(() => {
+    fetchCategory()
+  },[]);
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
@@ -89,7 +98,9 @@ const BaseFormProduct = (props: any) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <ControlSelect2
-            options={fakeCategoey}
+            labelPath="categoryName"
+            valuePath="_id"
+            options={categories}
             label="Category"
             name="categories"
             control={control}

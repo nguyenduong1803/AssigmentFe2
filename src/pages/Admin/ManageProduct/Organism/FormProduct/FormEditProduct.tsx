@@ -53,7 +53,6 @@ const FormEditProduct = (props: any) => {
   }, [id]);
   // reset data
   useEffect(() => {
-    console.log(data);
     if (!data) return;
     form.reset({
       name: data?.name,

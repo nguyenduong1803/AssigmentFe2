@@ -4,7 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
 import { addProduct } from "../../../../../services/productService/ProductService";
+
+
 import { getBase64 } from "../../../../../utils/Base64";
+import { getCategory } from "services/categoryService/CategoryService";
 type Props = {};
 type FormData = {
   name: string;
@@ -18,7 +21,6 @@ type FormData = {
 };
 
 const fakeOptions = ["Còn hàng", "Hết hàng"];
-const fakeCategoey = ["Điện thoại", "laptop"];
 
 const FormAddProduct = (props: Props) => {
   const form = useForm<FormData>({
@@ -33,13 +35,10 @@ const FormAddProduct = (props: Props) => {
   };
   const options = {
     fakeOptions,
-    fakeCategoey,
     form,
     onSubmit,
   };
-  useEffect(() => {
-    console.log("err", form.formState.errors);
-  });
+
   return <BaseFormProduct {...options} />;
 };
 export default FormAddProduct;
