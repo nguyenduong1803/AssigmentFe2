@@ -12,7 +12,8 @@ interface ISelect extends SelectProps {
   options: string[];
 }
 export default function BasicSelect(props: ISelect) {
-  const { value, setValue, label,options } = props;
+
+  const { value, setValue, label, options } = props;
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value);
   };
@@ -27,8 +28,10 @@ export default function BasicSelect(props: ISelect) {
           label={label}
           onChange={handleChange}
         >
-          {options.map((item,index) => (
-            <MenuItem key={index} value={item}>{item}</MenuItem>
+          {options.map((item, index) => (
+            <MenuItem key={index} value={item}>
+              {item}
+            </MenuItem>
           ))}
         </Select>
       </FormControl>

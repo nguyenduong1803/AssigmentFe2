@@ -5,6 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import ModalDelete from "components/Organism/Modal/ModalDelete";
+import useProductSlice from "hooks/useProductSlice";
 
 const ITEM_HEIGHT = 48;
 const LinkStyle = styled(Link)({
@@ -14,31 +16,37 @@ const LinkStyle = styled(Link)({
 type TypeProps = {
   id: string;
   tableName: string;
+  open?: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function MoreVery(props: TypeProps) {
-  const { id, tableName ,setOpen} = props;
+  const { id, tableName, setOpen, open } = props;
+  const { handleDetele } = useProductSlice();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+  const openMore = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleShowModalDelete=()=>{
+  const handleShowModalDelete = () => {
     setAnchorEl(null);
-    setOpen(true)
-  }
+    setOpen(true);
+  };
+  const handleDeleteProduct = () => {
+    handleDetele(id)
+    handleClose()
+  };
 
   return (
     <div>
       <IconButton
         aria-label="more"
         id="long-button"
-        aria-controls={open ? "long-menu" : undefined}
-        aria-expanded={open ? "true" : undefined}
+        aria-controls={openMore ? "long-menu" : undefined}
+        aria-expanded={openMore ? "true" : undefined}
         aria-haspopup="true"
         onClick={handleClick}
       >
@@ -50,7 +58,7 @@ export default function MoreVery(props: TypeProps) {
           "aria-labelledby": "long-button",
         }}
         anchorEl={anchorEl}
-        open={open}
+        open={openMore}
         onClose={handleClose}
         PaperProps={{
           style: {
@@ -65,7 +73,7 @@ export default function MoreVery(props: TypeProps) {
         <LinkStyle to={`/manage/${tableName}/edit/${id}`}>
           <MenuItem onClick={handleClose}>Edit</MenuItem>
         </LinkStyle>
-        <MenuItem onClick={handleShowModalDelete}>Delete</MenuItem>
+        <MenuItem onClick={handleDeleteProduct}>Delete</MenuItem>
       </Menu>
     </div>
   );

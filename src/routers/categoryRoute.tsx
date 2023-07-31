@@ -1,5 +1,4 @@
 import FormAddCategory from "../pages/Admin/ManageCategory/Organism/FormCategory/FormAddCategory";
-import FormEditCategory from "../pages/Admin/ManageCategory/Organism/FormCategory/FormEditcategory";
 import TemplateAdmin from "../components/Template/Admin/TemplateAdmin";
 import AddCategory from "../pages/Admin/ManageCategory/AddCategory";
 import EditCategory from "../pages/Admin/ManageCategory/EditCategory";
@@ -12,7 +11,7 @@ export const categoryRoute = {
       index: true,
       element: (
         <TemplateAdmin>
-          <ManageCategory />{" "}
+          <ManageCategory />
         </TemplateAdmin>
       ),
     },
@@ -20,7 +19,7 @@ export const categoryRoute = {
       path: "edit/:id",
       element: (
         <TemplateAdmin>
-          <EditCategory />{" "}
+          <EditCategory />
         </TemplateAdmin>
       ),
     },
@@ -28,7 +27,7 @@ export const categoryRoute = {
       path: "add",
       element: (
         <TemplateAdmin>
-          <AddCategory />{" "}
+          <AddCategory />
         </TemplateAdmin>
       ),
     },

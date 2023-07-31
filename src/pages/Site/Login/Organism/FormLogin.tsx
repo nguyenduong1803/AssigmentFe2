@@ -14,7 +14,7 @@ import { login } from "services/UserService/Auth";
 import { UserLogin } from "Types/Interface/User";
 
 type FormData = {
-  emai: string;
+  email: string;
   password: string;
 };
 const provider = new GoogleAuthProvider();
@@ -27,7 +27,10 @@ const FormLogin = () => {
   const form = useForm<FormData>({
     mode: "onChange",
     resolver: yupResolver(validationLogin),
-    defaultValues: validationLogin.getDefault(),
+    defaultValues: {
+      email:"test1@gmail.com",
+      password:'123456'
+    },
   });
   const onSubmit = async (data: any) => {
     const { forgotpassword, ...body } = data;
@@ -38,6 +41,7 @@ const FormLogin = () => {
       return;
     }
     const newUser: UserLogin = {
+      isAuthenticated:true,
       fullname: res.user.fullname,
       email: res.user.email,
       isAdmin: res.user.isAdmin,
@@ -66,6 +70,7 @@ const FormLogin = () => {
     LocalStorage.set("typeLogin", "google");
     if (idToken) {
       const newUser: UserLogin = {
+        isAuthenticated:true,
         fullname: res.user.displayName || "",
         email: res.user.email || "",
         isAdmin: false,

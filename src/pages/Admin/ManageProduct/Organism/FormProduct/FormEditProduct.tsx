@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
-import { validationProduct } from "../../../../../utils/Validate/FormProduct";
+import {
+  TFormProduct,
+  validationProduct,
+} from "../../../../../utils/Validate/FormProduct";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import BaseFormProduct from "../../Molecule/BaseFormProduct/BaseFormProduct";
-import {
-  getProductById,
-  updateProduct,
-} from "../../../../../services/productService/ProductService";
+import { getProductByIds } from "../../../../../services/productService/ProductService";
 import { useParams } from "react-router-dom";
 import { getBase64 } from "../../../../../utils/Base64";
+import useProductSlice from "hooks/useProductSlice";
 interface FormData {
   name: string;
   status: string;
@@ -23,19 +24,19 @@ interface FormData {
 const fakeOptions = ["Còn hàng", "Hết hàng"];
 const fakeCategoey = ["Điện thoại", "laptop"];
 const FormEditProduct = (props: any) => {
-  const [data, setData] = useState<FormData>();
+  const [data, setData] = useState<TFormProduct>();
+  const { handleUpdate } = useProductSlice();
   const { id } = useParams();
 
-  const form = useForm<FormData>({
+  const form = useForm<TFormProduct>({
     mode: "onChange",
     resolver: yupResolver(validationProduct),
     defaultValues: validationProduct.getDefault(),
   });
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: TFormProduct) => {
     const base64 = await getBase64(data?.file[0]);
-    const newData = { ...data, file: base64 };
-    const res = await updateProduct(id, newData);
-    console.log(res);
+    const newData = { ...data, file: base64 } as TFormProduct;
+    handleUpdate(id || "", newData);
   };
   const options = {
     fakeOptions,
@@ -44,9 +45,11 @@ const FormEditProduct = (props: any) => {
     onSubmit,
   };
   useEffect(() => {
+    console.log(id);
     if (!id) return;
     const fethData = async () => {
-      const res = await getProductById({ listId: id });
+      const res = await getProductByIds(id);
+      console.log(res);
       setData(res.data);
     };
     fethData();
@@ -55,15 +58,7 @@ const FormEditProduct = (props: any) => {
   useEffect(() => {
     console.log(data);
     if (!data) return;
-    form.reset({
-      name: data?.name,
-      status: data?.status,
-      quantity: data?.quantity,
-      price: data?.price,
-      discount: data?.discount,
-      describe: data?.describe,
-      categories: data?.categories,
-    });
+    form.reset(data);
   }, [data, form, form.reset, id]);
 
   return <BaseFormProduct {...options} />;

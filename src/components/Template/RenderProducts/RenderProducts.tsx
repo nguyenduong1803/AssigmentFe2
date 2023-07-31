@@ -21,9 +21,7 @@ const RenderProducts = ({ xs, category, search }: TypeProps) => {
     () => LocalStorage.get("cart") || []
   );
   const handleChangePage = (e: React.ChangeEvent<unknown>, page: number) => {
-    console.log(page);
     setNextPage(page);
-    console.log(nextPage);
   };
   const { isLoading, error, data, refetch } = useQuery("products", () =>
     getProduct({ limit: 8, page: nextPage, category, search })

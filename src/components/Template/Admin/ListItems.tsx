@@ -11,7 +11,7 @@ const LinkStyle = styled(Link)({
   textDecoration: "none",
   color: "inherit",
 });
-export const ListNavbar = navConfig.map((item,index) => {
+export const ListNavbar = navConfig.map((item, index) => {
   const Icon = item.icon;
   return (
     <LinkStyle key={index} to={item.path}>
@@ -29,23 +29,5 @@ export const secondaryListItems = (
     <ListSubheader component="div" inset>
       Saved reports
     </ListSubheader>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton>
   </>
 );

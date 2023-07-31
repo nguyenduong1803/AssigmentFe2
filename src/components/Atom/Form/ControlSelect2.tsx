@@ -14,13 +14,13 @@ interface ISelect extends FieldValues {
 const ControlSelect2 = (props: ISelect) => {
   const { label, options } = props;
 
-  const { control, name, placeholder, disabled, interpolation, ...rest } =
+  const { control, name, placeholder, disabled, interpolation,valuePath,labelPath, ...rest } =
     props;
   return (
     <Controller
       render={({ field, fieldState: { error } }) => (
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+          <InputLabel id="demo-simple-select-label">{label[labelPath]||label}</InputLabel>
           <Select
             id={name}
             fullWidth
@@ -33,8 +33,8 @@ const ControlSelect2 = (props: ISelect) => {
             label={label}
           >
             {options.map((item: any, index: number) => (
-              <MenuItem key={index} value={item}>
-                {item}
+              <MenuItem key={index} value={item[valuePath] || item}>
+                {item[labelPath] || item}
               </MenuItem>
             ))}
           </Select>

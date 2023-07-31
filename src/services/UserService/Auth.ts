@@ -1,5 +1,5 @@
 import { CommonResponse } from "Types/Interface/Common";
-import HttpClient from "../../utils/HtppClient";
+import HttpClient from "utils/HtppClient";
 
 // login
 const login = async (param: any) => {

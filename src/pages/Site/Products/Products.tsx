@@ -2,7 +2,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import useDebounce from "hooks/useDebounce";
 import React, { useState } from "react";
 import Banner from "../../../components/Template/Banner/Banner";
-import RenderProducts from "../../../components/Template/RenderProducts/RenderProducts";
+import RenderProducts from "components/Template/RenderProducts/RenderProducts";
 import FilterProduct from "./Template/FilterProduct";
 
 type Props = {};
@@ -10,9 +10,7 @@ type Props = {};
 const Products = (props: Props) => {
   const [category, setCategory] = useState("");
   const [search, setSearch] = useState("");
-  console.log(category)
-  console.log(search)
-  const debounceSearch = useDebounce(search,500)
+  const debounceSearch = useDebounce(search, 500);
   return (
     <>
       <Banner />
@@ -31,7 +29,11 @@ const Products = (props: Props) => {
             </Box>
           </Grid>
           <Grid item xs={9}>
-            <RenderProducts xs={4} category={category} search={debounceSearch} />
+            <RenderProducts
+              xs={4}
+              category={category}
+              search={debounceSearch}
+            />
           </Grid>
         </Grid>
       </Container>

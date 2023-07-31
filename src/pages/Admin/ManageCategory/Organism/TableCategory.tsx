@@ -53,9 +53,6 @@ export default function TableCategory() {
           <MoreVery tableName="category" setOpen={setOpen} id={row._id} />
         </TableCell>
         <ModalDelete
-          removeProduct={removeCategory}
-          onIsUpdate={setIsUpdate}
-          isUpdate={isUpdate}
           setOpen={setOpen}
           id={row._id}
           open={open}

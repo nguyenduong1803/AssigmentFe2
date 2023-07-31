@@ -1,6 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { getTime } from "date-fns";
 import HttpClient from "../../utils/HtppClient";
+import { IProduct } from "Types/Interface/Product";
+import { CommonResponse } from "Types/Interface/Common";
 
 interface IFilter {
   limit: number;
@@ -33,7 +35,7 @@ const getProductById = async (listId: IId) => {
 const getProductByIds = async (id: string | undefined) => {
   if (id) {
     try {
-      const res = await HttpClient.get(`productById/${id}`);
+      const res = await HttpClient.get(`findById/${id}`);
       return res;
     } catch (error) {
       console.log(error);

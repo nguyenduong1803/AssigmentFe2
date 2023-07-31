@@ -11,6 +11,7 @@ export const AuthContext = createContext<TypeAuth | undefined>(undefined);
 const Auth = (props: TypeProps) => {
   const { children } = props;
   const [user, setUser] = useState<UserLogin | undefined>({
+    isAuthenticated: false,
     fullname: "",
     email: "",
     isAdmin: false,
@@ -29,6 +30,7 @@ const Auth = (props: TypeProps) => {
         const res = await verifyToken({ type });
         const user = res?.data;
         const newUser: UserLogin = {
+          isAuthenticated: true,
           fullname: user.fullname,
           email: user.email,
           isAdmin: user.isAdmin,

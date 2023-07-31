@@ -1,10 +1,6 @@
 import * as yup from "yup";
 import Regexs from "../Regexs";
-yup.setLocale({
-  mixed: {
-    notType: "${path} is required",
-  },
-});
+
 const validationCheckout = yup.object().shape({
   username: yup
     .string()
