@@ -7,7 +7,7 @@ import MoreVery from "../../../../components/Atom/MoreVery/MoreVery";
 import BasicTable from "../../../../components/Molecule/BaseForm/BasicTable/BasicTable";
 import ModalDelete from "../../../../components/Organism/Modal/ModalDelete";
 import { IOrder } from "../../../../Types/Interface/Order";
-import { getOrder } from "../../../../services/orderService/OrderService";
+import { getOrder } from "../../../../services/orderService/order.service";
 
 import { removeCategory } from "../../../../services/categoryService/CategoryService";
 
