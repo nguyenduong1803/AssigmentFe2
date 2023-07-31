@@ -8,6 +8,7 @@ export interface IUser {
   updatedAt: string;
 }
 export interface UserLogin {
+  isAuthenticated:boolean;
   fullname: string;
   email: string;
   isAdmin: boolean;

@@ -47,4 +47,6 @@ const validationProduct = yup.object().shape({
     return value[0];
   }),
 });
+type TFormProduct = yup.InferType<typeof validationProduct>;
+export type { TFormProduct };
 export { validationProduct };

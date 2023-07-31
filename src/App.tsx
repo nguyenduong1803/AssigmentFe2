@@ -6,6 +6,7 @@ import store from "./redux/store";
 import WrapQuery from "./services/ReactQuery/WrapQuery";
 import Auth from "./context/Auth";
 import "./styles.css";
+import ToastMessage from "components/Atom/ToastMessage/ToastMessage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           </WrapQuery>
         </Auth>
       </BrowserRouter>
+      <ToastMessage />
     </Provider>
   );
 }

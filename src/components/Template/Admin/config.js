@@ -16,11 +16,6 @@ const navConfig = [
     icon: DashboardIcon,
   },
   {
-    title: "User",
-    path: "/manage/user",
-    icon: ManageAccountsIcon,
-  },
-  {
     title: "Product",
     path: "/manage/product",
     icon: StoreIcon,
@@ -39,11 +34,6 @@ const navConfig = [
     title: "Blog",
     path: "/manage/blog",
     icon: CollectionsBookmarkIcon,
-  },
-  {
-    title: "Reports",
-    path: "/manage/blog",
-    icon: BarChartIcon,
   },
 ];
 const account = {

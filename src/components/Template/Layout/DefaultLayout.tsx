@@ -6,6 +6,7 @@ interface Props {
 }
 
 const DefaultLayout: FC<Props> = (props: Props) => {
+
   return (
     <>
       <Header />

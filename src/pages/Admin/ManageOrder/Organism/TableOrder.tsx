@@ -9,9 +9,7 @@ import ModalDelete from "../../../../components/Organism/Modal/ModalDelete";
 import { IOrder } from "../../../../Types/Interface/Order";
 import { getOrder } from "../../../../services/orderService/OrderService";
 
-import {
-  removeCategory,
-} from "../../../../services/categoryService/CategoryService";
+import { removeCategory } from "../../../../services/categoryService/CategoryService";
 
 export default function TableOrder() {
   const [isUpdate, setIsUpdate] = useState<boolean>(false);
@@ -33,7 +31,16 @@ export default function TableOrder() {
   if (isLoading) return <p>Loading..</p>;
   if (error) return <p>An error has occurred: </p>;
   // computed label
-  const labels = ["ID", "UserId", "Address", "Phone number", "note", "totalMoney","Create at","Status"];
+  const labels = [
+    "ID",
+    "UserId",
+    "Address",
+    "Phone number",
+    "note",
+    "totalMoney",
+    "Create at",
+    "Status",
+  ];
   const listLabel = labels.map((label, index) => (
     <TableCell sx={{ textTransform: "capitalize" }} key={index}>
       {label}
@@ -58,14 +65,7 @@ export default function TableOrder() {
         <TableCell component="th">
           <MoreVery tableName="category" setOpen={setOpen} id={row._id} />
         </TableCell>
-        <ModalDelete
-          removeProduct={removeCategory}
-          onIsUpdate={setIsUpdate}
-          isUpdate={isUpdate}
-          setOpen={setOpen}
-          id={row._id}
-          open={open}
-        />
+        {open && <ModalDelete setOpen={setOpen} id={row._id} open={open} />}
       </TableRow>
     ));
   return <BasicTable listLabel={listLabel} listRow={listRow} />;

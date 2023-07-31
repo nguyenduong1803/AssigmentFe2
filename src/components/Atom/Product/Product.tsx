@@ -3,10 +3,11 @@ import React, { Dispatch, SetStateAction } from "react";
 import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import ToastMess from "../ToastMess/ToastMess";
 import LocalStorage from "utils/LocalStorage";
+import { Link } from "react-router-dom";
 
 type Props = {
   id: string;
@@ -23,7 +24,7 @@ type TypeCart = {
 
 const Product = (props: Props) => {
   const [openToast, setOpenToast] = React.useState<boolean>(false);
-  
+
   const { image, name, price, discount, id, setCart } = props;
 
   const handleAddCart = (productId: string) => {
@@ -37,16 +38,16 @@ const Product = (props: Props) => {
         LocalStorage.set("cart", [...prev]);
         return [...prev];
       } else {
-        const newCart = [...prev, { productId, quantity: 1 }]
+        const newCart = [...prev, { productId, quantity: 1 }];
         LocalStorage.set("cart", newCart);
         return newCart;
       }
     });
     setOpenToast(true);
   };
-  const discountPrice = (price:number,discount:number) => {
-    return price * discount /100
-  }
+  const discountPrice = (price: number, discount: number) => {
+    return (price * discount) / 100;
+  };
   return (
     <Box>
       <BoxImage position="relative">
@@ -61,6 +62,8 @@ const Product = (props: Props) => {
         <WrapIcon className="productIcon">
           <Stack direction="row" spacing={2}>
             <IconButton
+              component={Link}
+              to={`/products/${id}`}
               sx={{
                 backgroundColor: "#fff",
                 boxShadow: "rgba(34, 34, 34, 0.1) 0px 4px 12px;",
@@ -79,19 +82,24 @@ const Product = (props: Props) => {
           </Stack>
         </WrapIcon>
       </BoxImage>
-      <Typography variant="h6" fontWeight={500}>
+      <Typography
+        sx={{
+          textDecoration: "none",
+          color: "#000",
+          "&:hover": { color: "primary.main" },
+        }}
+        component={Link}
+        to={`/products/${id}`}
+        fontWeight={500}
+      >
         {name}
       </Typography>
       <Stack direction="row" spacing={4}>
-        <Typography
-          variant="subtitle1"
-          fontWeight={500}
-          sx={{ textDecoration: "line-through" }}
-        >
-         {discount && discount >0 && `$${price}`} 
+        <Typography variant="subtitle1" fontWeight={500}>
+          {discount && discount > 0 && `$${price}`}
         </Typography>
         <Typography variant="subtitle1" fontWeight={700}>
-          ${discountPrice(price,discount||0)}
+          ${discountPrice(price, discount || 0)}
         </Typography>
       </Stack>
       <ToastMess

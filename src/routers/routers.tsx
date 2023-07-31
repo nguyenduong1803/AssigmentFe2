@@ -12,6 +12,7 @@ import DefaultLayout from "../components/Template/Layout/DefaultLayout";
 import Products from "../pages/Site/Products/Products";
 import Checkout from "../pages/Site/Checkout/Checkout";
 import Login from "../pages/Site/Login/Login";
+import ProductDetail from "pages/Site/ProductDetail";
 const Home = lazy(() => import("../pages/Site/Home/Home"));
 const About = lazy(() => import("../pages/Site/About/About"));
 
@@ -22,6 +23,9 @@ const routes: RouteObject[] = [
   },
   { 
     path: "/products", element: (<DefaultLayout><Products /></DefaultLayout> ),
+  },
+  { 
+    path: "/products/:id", element: (<DefaultLayout><ProductDetail /></DefaultLayout> ),
   },
   { 
     path: "/checkout", element: (<DefaultLayout><Checkout /></DefaultLayout> ),

@@ -32,9 +32,7 @@ const BaseFormProduct = (props: any) => {
 
   useEffect(() => {
     if (file && file[0]) {
-      const readURL = (input: File) => {
-        setUrlImage(URL.createObjectURL(input));
-      };
+        setUrlImage(URL.createObjectURL(file[0]));
     }
     const subscription = watch((value: IProduct) => {
       // console.log(value.name);
