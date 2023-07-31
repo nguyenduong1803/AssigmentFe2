@@ -1,6 +1,6 @@
 import { FormOrder } from "./../../Types/Interface/Order";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addOrder } from "services/orderService/OrderService";
+import { addOrder } from "services/orderService/order.service";
 import LocalStorage from "utils/LocalStorage";
 
 const OrderSlice = createSlice({
