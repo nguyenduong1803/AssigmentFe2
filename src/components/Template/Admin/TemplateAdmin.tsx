@@ -78,21 +78,11 @@ const mdTheme = createTheme();
 
 function TemplateAdmin(props: TypeProps) {
   const [open, setOpen] = React.useState(true);
-  const navigate = useNavigate();
-  const auth = useAuth();
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  console.log(auth?.user?.isAdmin);
-  // if (!auth?.user?.isAdmin ) {
-  //   console.log(auth?.user?.isAdmin);
-  //   return <Navigate to="/login" />;
-  // }
-  React.useEffect(() => {
-    if (!auth?.user?.isAdmin) {
-      navigate("/login");
-    }
-  });
+
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>

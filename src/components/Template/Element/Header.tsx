@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/system";
@@ -36,8 +35,8 @@ const Header = () => {
             <LinkTo to="/blog">
               <Item sx={{ borderRadius: "4px" }}> Blog</Item>
             </LinkTo>
-            <LinkTo to="/contacts">
-              <Item sx={{ borderRadius: "4px" }}> Contacts</Item>
+            <LinkTo to="/manage">
+              <Item sx={{ borderRadius: "4px" }}> Admin</Item>
             </LinkTo>
           </Stack>
         </Grid>
